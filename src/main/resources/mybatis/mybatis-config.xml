@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!-- 包别名机制 -->
+<typeAliases>
+<!-- 相当于把cn.tarena.ht.pojo，以后再访问这个包下的类时，可以
+直接写类名即可。
+但是需要注意：配置完包别名机制之后，只能写类的简名，如果写全路径的话，会报错
+ -->
+<package name="cn.tarena.ht.pojo"/>
+</typeAliases>
+
+</configuration>

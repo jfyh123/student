@@ -1,0 +1,12 @@
+127.0.0.1 - - [02/Dec/2018:23:03:13 +0800] "GET / HTTP/1.1" 404 949 http-bio-8888-exec-1 263
+127.0.0.1 - - [02/Dec/2018:23:03:13 +0800] "GET /favicon.ico HTTP/1.1" 404 949 http-bio-8888-exec-3 2
+127.0.0.1 - - [02/Dec/2018:23:10:34 +0800] "GET /student/test HTTP/1.1" 404 949 http-bio-8888-exec-1 107
+127.0.0.1 - - [02/Dec/2018:23:10:35 +0800] "GET /favicon.ico HTTP/1.1" 404 949 http-bio-8888-exec-3 4
+0:0:0:0:0:0:0:1 - - [02/Dec/2018:23:10:53 +0800] "GET /student/test HTTP/1.1" 404 949 http-bio-8888-exec-5 9
+0:0:0:0:0:0:0:1 - - [02/Dec/2018:23:10:53 +0800] "GET /favicon.ico HTTP/1.1" 404 949 http-bio-8888-exec-7 3
+0:0:0:0:0:0:0:1 - - [02/Dec/2018:23:10:57 +0800] "GET //test HTTP/1.1" 404 949 http-bio-8888-exec-8 2
+0:0:0:0:0:0:0:1 - - [02/Dec/2018:23:11:01 +0800] "GET /test HTTP/1.1" 404 949 http-bio-8888-exec-9 2
+0:0:0:0:0:0:0:1 - - [02/Dec/2018:23:11:05 +0800] "GET /test HTTP/1.1" 404 949 http-bio-8888-exec-10 4
+0:0:0:0:0:0:0:1 - - [02/Dec/2018:23:11:34 +0800] "GET /student/index.jsp HTTP/1.1" 404 985 http-bio-8888-exec-10 2
+0:0:0:0:0:0:0:1 - - [02/Dec/2018:23:31:24 +0800] "GET /test HTTP/1.1" 200 57 http-bio-8888-exec-1 16584
+0:0:0:0:0:0:0:1 - - [02/Dec/2018:23:31:25 +0800] "GET /favicon.ico HTTP/1.1" 404 949 http-bio-8888-exec-3 4
