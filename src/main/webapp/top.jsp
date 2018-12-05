@@ -9,14 +9,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<div class="nav_top">
+	<div class="nav_top">
 		<div class="nav_logo">
-			<img class="pic_logo" src="static/images/book.png">
-			<a class="nav_logo_text" href="#"><span>课程设计选题系统</span></a>
+			<img class="pic_logo" src="static/images/book.png"> <a
+				class="nav_logo_text" href="#"><span>课程设计选题系统</span></a>
 		</div>
 		<div class="nav_user">
-			<img class="pic_user" src="static/images/user.png">
-			<a class="nav_user_name" href="#"><span>admin</span></a>
+			<img class="pic_user" src="static/images/user.png"> <a
+				class="nav_user_name" href="#"><span>admin</span></a>
 			<button type="button" class="btn btn-danger btn-sm nav_user_exit">退出</button>
 		</div>
 	</div>
@@ -26,6 +26,7 @@ body{
 	background:#F3F8FF;
 }
 .nav_top{
+	margin-top:10px;
 	height:60px;
 }
 .nav_logo{
