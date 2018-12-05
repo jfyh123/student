@@ -3,11 +3,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+	<script type="text/javascript" src="static/js/bootstrap.js"></script>
+	<script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>课程设计选题系统</title>
 </head>
 <body>
 <div class="nav_top">
@@ -24,16 +23,19 @@
 </body>
 <style>
 body{
+	background:#F3F8FF;
 }
 .nav_top{
 	height:60px;
-	background:#F3F8FF;
 }
 .nav_logo{
 	float:left;
 	margin-left:20px;
+}
+.nav_logo_text{
+	margin-left:15px;
 	font-weight:600;
-	font-size: 14px;
+	font-size: 18px;
 }
 .nav_user{
 	margin-top: 10px;
@@ -42,8 +44,8 @@ body{
 	font-size: 14px;
 }
 .pic_logo{
-	width:60px;
-	height: 60px;
+	width:50px;
+	height:50px;
 }
 .pic_user{
 	width: 35px;
@@ -52,7 +54,7 @@ body{
 }
 .nav_user_name{
 	margin-left:5px;
-	font-size:15px;
+	font-size:18px;
 	display:inline-block;
 	vertical-align:middle;
 }
