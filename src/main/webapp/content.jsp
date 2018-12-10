@@ -8,7 +8,11 @@
 	<script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
+<div class="content">
 	
-</body>
-</html>
+</div>
+<style type="text/css">
+.content{
+	background-color: #808080;
+}
+</style>

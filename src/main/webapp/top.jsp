@@ -26,7 +26,7 @@ body{
 	background:#F3F8FF;
 }
 .nav_top{
-	margin-top:10px;
+	margin-top:20px;
 	height:60px;
 }
 .nav_logo{
@@ -39,14 +39,14 @@ body{
 	font-size: 18px;
 }
 .nav_user{
-	margin-top: 10px;
+	margin-top: 5px;
 	float:right;
 	width:230px;
 	font-size: 14px;
 }
 .pic_logo{
-	width:50px;
-	height:50px;
+	width:45px;
+	height:45px;
 }
 .pic_user{
 	width: 35px;
