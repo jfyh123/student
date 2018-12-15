@@ -13,5 +13,7 @@ public interface UserMapper {
 	
 	UserTable selectByUserName(String name);
 
+	UserTable selectById(int utid);
+
 
 }

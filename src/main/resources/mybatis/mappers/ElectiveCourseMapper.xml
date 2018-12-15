@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 注意，namespace的名字要和对应的接口的全路径名一致 -->
+<mapper namespace="cn.tarena.ht.mapper.ElectiveCourseMapper">
+
+
+	<insert id="InsertElectiveCourse" parameterType="int" >
+	INSERT INTO elective_course (sid,cid) VALUES (#{utid},#{cid})
+	</insert>
+	
+</mapper>

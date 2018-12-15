@@ -14,13 +14,12 @@
       <mvc:annotation-driven/>
       <context:component-scan base-package="cn.tarena.ht.controller"></context:component-scan>
     
-      
       <!-- 内部资源视图解析器 规则：WEB/INF/pages/index.jsp   前缀+逻辑名+后缀 -->
-      <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-      	<property name="prefix" value="/WEB-INF/"/>
+      <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      	<property name="prefix" value="/"/>
       	<property name="suffix" value=".jsp"/>
       </bean>		
       <!-- 你忘加静态文件映射了 -->
-      <mvc:resources mapping="/static/**" location="/WEB-INF/static/" />  			     	
+      <mvc:resources mapping="/static/**" location="/WEB-INF/static/" />		     	
       
 </beans>
