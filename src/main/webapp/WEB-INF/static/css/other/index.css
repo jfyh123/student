@@ -80,7 +80,7 @@
 	float:right;
 	margin-left:16%;
 	margin-top:1%;
-	background-color: #888;
+	box-shadow: 5px 5px 5px #e8e8e8;
 	width: 83%;
 	height: 79%;
 }
