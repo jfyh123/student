@@ -30,5 +30,13 @@ public class UserService {
 	public UserTable UserLogin(String name) {
 		return userMapper.selectByUserName(name);
 	}
+	
+	/**
+	 * 个人信息
+	 * @author LuoJiaying
+	 * */
+	public UserTable Information(int utid) {
+		return userMapper.selectById(utid);
+	}
 
 }

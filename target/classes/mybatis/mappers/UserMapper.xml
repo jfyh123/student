@@ -35,4 +35,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *  FROM usertable where uname=#{name}
 	</select>
 	
+	<!-- 个人信息-->
+	<select id="selectById" parameterType="int" resultType="cn.tarena.ht.pojo.UserTable">
+		SELECT *  FROM usertable where utid=#{utid}
+	</select>
+	
 </mapper>

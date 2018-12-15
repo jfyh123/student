@@ -61,35 +61,19 @@ public class UserController {
 	}
 	
 	/**
-	 * 角色
+	 * 个人信息
 	 * @author luojiayng
 	 * */
-	@RequestMapping(value = "/character",produces = "application/json;charset=utf-8")
-	public @ResponseBody Result  Character(HttpServletRequest request,UserTable u) {
+	@RequestMapping(value = "/information",produces = "application/json;charset=utf-8")
+	public @ResponseBody Result  information(HttpServletRequest request,UserTable u) {
 		//参数校验
 		if(u.getUtid()==null||u.getType()>1||u.getType()<0){
 			return ResultFactory.generateResult(ResultConstants.PARAMETER_CODE, 
 					ResultConstants.PARAMETER_MSG);
-		}
-		//老师
-		
-		//学生
-		
-		UserTable user=userService.UserLogin(u.getUname());
-		if(user==null){
-			return ResultFactory.generateResult(ResultConstants.ACCOUNT_NULL_ERROR_CODE, 
-					ResultConstants.ACCOUNT_NULL_ERROR_MSG);
-		}else{
-			if(user.equals(u.getPwd())){
-				return ResultFactory.generateResult(ResultConstants.PASSWORD_ERROR_CODE, 
-						ResultConstants.PASSWORD_ERROR_MSG);
-			}
-			if(user.getStatus()==1){
-				return ResultFactory.generateResult(ResultConstants.FREEZE_ERROR_CODE, 
-						ResultConstants.FREEZE_ERROR_MSG);
-			}
-			return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, ResultConstants.SUCCESS_MSG,user);
-		}
+		}	
+		UserTable user=userService.Information(u.getUtid());
+		return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, ResultConstants.SUCCESS_MSG,user);
 	}
+	
 	
 }
