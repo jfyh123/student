@@ -20,19 +20,11 @@ import cn.tarena.ht.utils.ResultFactory;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	/**
-	 * 测试的地方
-	 * 查询所有用户
-	 * @author luojiayng
-	 * */
-	@RequestMapping(value = "/allUser",produces = "application/json;charset=utf-8")
-	public @ResponseBody Result  AllIndustry(HttpServletRequest request) {
-		List<UserTable> list =userService.selectAllUser();
-		UserTable user=new UserTable();
-		int aa=userService.insertOneUser(user);
-		System.out.println(user.getUtid());
-		Result rs=ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, ResultConstants.SUCCESS_MSG,list);
-		return rs;
+	@RequestMapping(value = "/aaa",produces = "application/json;charset=utf-8")
+	public void aaaa(){
+		int a=1;
+		System.out.println(a);
+		
 	}
 	
 	/**
@@ -40,7 +32,7 @@ public class UserController {
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/login",produces = "application/json;charset=utf-8")
-	public @ResponseBody Result  userLogin(HttpServletRequest request,@RequestBody UserTable u) {
+	public @ResponseBody Result  userLogin(HttpServletRequest request,UserTable u) {
 		if(MyTools.isNullOrEmpty(u.getUname())||MyTools.isNullOrEmpty(u.getUname())){
 			return ResultFactory.generateResult(ResultConstants.PARAMETER_CODE, 
 					ResultConstants.PARAMETER_MSG);

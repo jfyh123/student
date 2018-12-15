@@ -20,19 +20,19 @@
 		<div class="lg_tiele">
 			<span>账号密码登录</span>
 		</div>
-		<form  action="LoginServlet" method="post">
+		<form  action="user/login" method="post">
 			<div class="login">
 				<!--下面是用户名输入框-->
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"></span> <input
-						id="username" name="username" type="text" class="form-control" placeholder="用户名"
+						id="username" name="uname" type="text" class="form-control" placeholder="用户名"
 						aria-describedby="basic-addon1">
 				</div>
 				<br>
 				<!--下面是密码输入框-->
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"></span> <input type="password"
-						id="password" name="password" type="text" class="form-control" placeholder="密码"
+						id="password" name="pwd" type="text" class="form-control" placeholder="密码"
 						aria-describedby="basic-addon1">
 				</div>
 				<br>
