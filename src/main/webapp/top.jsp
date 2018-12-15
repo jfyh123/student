@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="static/js/bootstrap.js"></script>
 	<script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="static/css/other/top.css"/>
 </head>
 <body>
 	<div class="nav_top">
@@ -21,46 +22,4 @@
 		</div>
 	</div>
 </body>
-<style>
-body{
-	background:#F3F8FF;
-}
-.nav_top{
-	margin-top:20px;
-	height:60px;
-}
-.nav_logo{
-	float:left;
-	margin-left:20px;
-}
-.nav_logo_text{
-	margin-left:15px;
-	font-weight:600;
-	font-size: 18px;
-}
-.nav_user{
-	margin-top: 5px;
-	float:right;
-	width:230px;
-	font-size: 14px;
-}
-.pic_logo{
-	width:45px;
-	height:45px;
-}
-.pic_user{
-	width: 35px;
-	height: 35px;
-	display:inline-block;
-}
-.nav_user_name{
-	margin-left:5px;
-	font-size:18px;
-	display:inline-block;
-	vertical-align:middle;
-}
-.nav_user_exit{
-	margin-left:60px;
-}
-</style>
 </html>

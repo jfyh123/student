@@ -6,22 +6,8 @@
 	<script type="text/javascript" src="static/js/bootstrap.js"></script>
 	<script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="static/css/other/index.css"/>
 	<title>课程设计选题系统</title>
-	<style type="text/css">
-        #iframeTop{
-            width: 100%;
-            height: 85px;
-        }
-        #iframeLeft{
-            width: 15%;
-            height: 700px;
-            float: left;
-        }
-        #iframeContent{
-            width: 84%;
-            height: 700px;
-        }
-    </style>
 </head>
 <body>
 <div>

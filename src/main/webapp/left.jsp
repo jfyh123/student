@@ -6,51 +6,67 @@
 	<script type="text/javascript" src="static/js/bootstrap.js"></script>
 	<script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="static/css/other/left.css"/>
 </head>
-       <ul>
+	<c:if test="">
+	       <ul>
+	           <li class="select">
+	           	<a href="#"><span>学生菜单</span></a>
+	           </li>
+	           <li>
+	           	<a href="#"><span>个人信息</span></a>
+	           </li>
+	           <li>
+	           	<a href="#"><span>学生选题</span></a>
+	           </li>
+	           <li>
+	           	<a href="#"><span>成绩查询</span></a>
+	           </li>
+	           <li>
+	           	<a href="#"><span>留言</span></a>
+	           </li>
+	       </ul>
+       </c:if>
+       <c:if test="">
+		<ul>
            <li class="select">
-           	<a href="#"><span>全部文件</span></a>
+           	<a href="#"><span>教师菜单</span></a>
            </li>
            <li>
-           	<a href="#"><span>图片</span></a>
+           	<a href="#"><span>个人信息</span></a>
            </li>
            <li>
-           	<a href="#"><span>文档</span></a>
+           	<a href="#"><span>上报题目</span></a>
            </li>
            <li>
-           	<a href="#"><span>视频</span></a>
+           	<a href="#"><span>成绩提交</span></a>
            </li>
            <li>
-           	<a href="#"><span>其他</span></a>
+           	<a href="#"><span>留言</span></a>
            </li>
        </ul>
+       </c:if>
+       
+       
+<script type="text/javascript">
+	$(function(){
+	    initData();
+	    alert("loading menu");
+	});
+	function initData(){
+        $.ajax({
+            type:'GET',
+            dataType: 'json',
+            url:'',
+            data:'',
+            success:function(res){
+                
+            },
+            error:function(){
+                //alert("发生错误");
+            }
+        });
+    }
+</script>
 
-<style>
-body{
-	background:#F3F8FF;
-}
-ul{
-	margin:0px;
-	padding:0px;
-	list-style-type: none;
-	text-align: center;
-}
-li{
-	padding: 12px 0px;
-}
-a{
-	font-size:14px;
-	color:#424e67;
-}
-a:-webkit-any-link {
-	text-decoration:none;
-}
-.select{
-	background-color: #999;
-	opacity:0.7;
-}
-.select a{
-	color:#06c;
-}
-</style>
 </html>
