@@ -1,14 +1,12 @@
 package cn.tarena.ht.service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.tarena.ht.mapper.UserMapper;
-import cn.tarena.ht.pojo.User;
+import cn.tarena.ht.pojo.UserTable;
 
 @Service
 public class UserService {
@@ -16,9 +14,21 @@ public class UserService {
 	private UserMapper userMapper;
 
 	
-	public List<User> selectList(){
-		List<User> list=userMapper.selectList();
+	public List<UserTable> selectAllUser(){
+		List<UserTable> list=userMapper.selectAllUser();
 		return  list;
+	}
+	
+	public int insertOneUser(UserTable user){
+		return userMapper.insertOneUser(user);
+	}
+    
+	/**
+	 * 用户登录
+	 * @author LuoJiaying
+	 * */
+	public UserTable UserLogin(String name) {
+		return userMapper.selectByUserName(name);
 	}
 
 }

@@ -4,15 +4,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 注意，namespace的名字要和对应的接口的全路径名一致 -->
 <mapper namespace="cn.tarena.ht.mapper.UserMapper">
-<resultMap type="User" id="userRM">
-	<id property="uid" column="uid"></id>
-	<result property="name" column="name"/>
+<resultMap type="cn.tarena.ht.pojo.UserTable" id="userRM">
+	<id property="utid" column="utid"></id>
+	<result property="uname" column="uname"/>
 	<result property="pwd" column="pwd"/>
+	<result property="nick_name" column="nick_name"/>
+	<result property="email" column="email"/>
+	<result property="phone" column="phone"/>
+	<result property="gender" column="gender"/>
+	<result property="type" column="type"/>
+	<result property="status" column="status"/>
   </resultMap>
 
 	<!-- 1.查询所有用户信息 -->
-	<select id="selectList" resultMap="userRM">
-		SELECT *  FROM "user"
+	<select id="selectAllUser" resultType="cn.tarena.ht.pojo.UserTable">
+		SELECT *  FROM usertable
+	</select>
+	
+	<insert id="insertOneUser" parameterType="cn.tarena.ht.pojo.UserTable" >
+	<!--
+	<selectKey keyProperty="utid" resultType="java.lang.Integer" order="BEFORE">  
+            select SEQ_USERTABLE.nextval from dual  
+    </selectKey>  
+    -->
+	INSERT INTO usertable (uname,pwd,nick_name,email,phone) VALUES ('bbbb','123456','打的费','123456789@qq.com','123456789')
+	</insert>
+	
+	<!-- 用户登录 -->
+	<select id="selectByUserName" parameterType="String" resultType="cn.tarena.ht.pojo.UserTable">
+		SELECT *  FROM usertable where uname=#{name}
 	</select>
 	
 </mapper>

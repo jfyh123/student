@@ -19,7 +19,7 @@
 <bean id="dataSourceOracle" class="com.zaxxer.hikari.HikariDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl"></property>
-		<property name="username" value="student"></property>
+		<property name="username" value="oracle"></property>
 		<property name="password" value="123456"></property>
 </bean>
 		
