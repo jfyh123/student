@@ -2,7 +2,7 @@ package cn.tarena.ht.pojo;
 
 import java.io.Serializable;
 
-public class Leave_comments implements Serializable{
+public class LeaveComments implements Serializable{
 	
 	private Integer  lcid;//留言id
 	private Integer  sid;//学生id

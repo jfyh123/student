@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.tarena.ht.pojo.Course;
+import cn.tarena.ht.pojo.ElectiveCourse;
+import cn.tarena.ht.pojo.Topic;
 import cn.tarena.ht.pojo.UserTable;
 import cn.tarena.ht.result.SelectAllCourseResult;
 import cn.tarena.ht.result.ShowCourseResult;
 import cn.tarena.ht.service.CourseService;
 import cn.tarena.ht.service.ElectiveCourseService;
+import cn.tarena.ht.service.TopicService;
 import cn.tarena.ht.service.UserService;
 import cn.tarena.ht.utils.MyTools;
 import cn.tarena.ht.utils.Result;
@@ -29,6 +32,8 @@ public class StudentController {
 	private CourseService courseService;
 	@Autowired
 	private ElectiveCourseService electiveCourseService;
+	@Autowired
+	private TopicService topicService;
 	
 	/**
 	 * 学生选课
@@ -57,11 +62,17 @@ public class StudentController {
 			msg="操作数据有误";
 			flag=false;
 		}
-	    int i=electiveCourseService.InsertElectiveCourse(cid,utid);
-	    if(i!=1){
-	    	msg="操作数据有误";
-			flag=false;
-	    }
+		//检查这个学生有没有选过这个课
+		ElectiveCourse ec=electiveCourseService.CheckElectiveCourse(cid,utid);
+		if(ec!=null){
+			msg="你已经选过这个课程了";
+		}else{
+			 int i=electiveCourseService.InsertElectiveCourse(cid,utid);
+			  if(i!=1){
+			     msg="选课失败";
+			     flag=false;
+			   }
+		}
 	    mav.addObject("msg", msg);
 	    if(flag){
 	    	mav.setViewName("index");
@@ -94,6 +105,43 @@ public class StudentController {
 	    }
 		return mav;
 	}
+	/**
+	 *退课
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/deleteCourse",produces = "application/json;charset=utf-8")
+	public ModelAndView deleteCourse(HttpServletRequest request,HttpSession session, Integer ecid) {
+		UserTable get=(UserTable) session.getAttribute("user");
+		ModelAndView mav=new ModelAndView();
+	    if(get==null){
+	    	mav.addObject("msg", " 操作失败");
+	    }else{
+	    	int i=electiveCourseService.deleteCourse(ecid);
+	    	if(i!=1){
+				mav.addObject("msg", " 删除失败");
+			}else{
+				mav.addObject("msg", "保存成功");
+			}	
+	    }	
+		return mav;
+	}
+	
+	/**
+	 *进入选题
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/showCourseTopic",produces = "application/json;charset=utf-8")
+	public ModelAndView showCourseTopic(HttpServletRequest request,HttpSession session, Integer cid) {
+		UserTable get=(UserTable) session.getAttribute("user");
+		ModelAndView mav=new ModelAndView();
+	    if(get==null){
+	    	mav.addObject("msg", " 操作失败");
+	    }else{
+	    	List<Topic> list=topicService.showCourseTopic(cid);
+	    	mav.addObject("msg", " 操作失败");
+	    }	
+		return mav;
+	}
 	
 	/**
 	 * 成绩查询
@@ -108,6 +156,7 @@ public class StudentController {
 	    mav.setViewName("index");
 		return mav;
 	}
+	
 	
 	
 	

@@ -82,17 +82,21 @@ public class UserController {
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/UpdateInformation",produces = "application/json;charset=utf-8")
-	public ModelAndView  UpdateInformation(HttpServletRequest request,UserTable u,HttpSession session) {
-		ModelAndView mav=new ModelAndView();
+	public @ResponseBody Result  UpdateInformation(HttpServletRequest request,UserTable u,HttpSession session) {
+		String msg="";
 		UserTable get=(UserTable) session.getAttribute("user");
 		u.setUtid(get.getUtid());
 		int i=userService.UpdateInformation(u);
 		if(i!=1){
-			mav.addObject("msg", "保存失败");
+			msg="保存失败";
+			return ResultFactory.generateResult(ResultConstants.ERROR_CODE, 
+					ResultConstants.ERROR_MSG,msg);
 		}else{
-			mav.addObject("msg", "保存成功");
+			msg= "保存成功";
+			return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, 
+					ResultConstants.SUCCESS_MSG,msg);
 		}	
-		return mav;
+
 	}
 	
 	

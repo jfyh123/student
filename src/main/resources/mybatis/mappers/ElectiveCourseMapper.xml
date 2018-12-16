@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 显示学生所有课程 -->
 	<select id="showCourse" parameterType="int" resultType="cn.tarena.ht.result.ShowCourseResult">
 		select 
-		EC.ECID,
+		EC.ECID,ec.cid
 		c.cname,c.cycle,c.ADDRESS,c."TIME",
 		ut.nick_name,
 		t.tname,
@@ -48,6 +48,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN TOPIC t on t.tid=ec.tid
 		where EC.sid=#{utid} and ec.grade  is  not  null
 	</select>
+	
+	<!-- 检查是否已经选过这个课程 -->
+	<select id="CheckElectiveCourse" parameterType="int" resultType="cn.tarena.ht.pojo.ElectiveCourse">
+	select * from ELECTIVE_COURSE where cid=${cid} and sid=${utid}
+	</select>
+	
+   <delete id="deleteCourse" parameterType="int">
+   		delete from ELECTIVE_COURSE where ecid=#{ecid}
+   </delete>
+
+	
 	
 	
 </mapper>

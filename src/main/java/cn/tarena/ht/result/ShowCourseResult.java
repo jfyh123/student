@@ -2,6 +2,7 @@ package cn.tarena.ht.result;
 
 public class ShowCourseResult {
 	private Integer  ecid;//学生选课id
+	private Integer  cid;//课程id
 	private String cname;//课程名称
 	private String cycle;//课程周期
 	private String address;//地址
@@ -17,6 +18,12 @@ public class ShowCourseResult {
 	}
 	public void setEcid(Integer ecid) {
 		this.ecid = ecid;
+	}
+	public Integer getCid() {
+		return cid;
+	}
+	public void setCid(Integer cid) {
+		this.cid = cid;
 	}
 	public String getCname() {
 		return cname;

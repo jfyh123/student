@@ -2,7 +2,7 @@ package cn.tarena.ht.pojo;
 
 import java.io.Serializable;
 
-public class Elective_Course implements Serializable{
+public class ElectiveCourse implements Serializable{
 	private Integer  ecid;//学生选课id
 	private Integer  sid;//学生id
 	private Integer  cid;//课程id
