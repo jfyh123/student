@@ -44,7 +44,7 @@ public class StudentController {
 		ModelAndView mav=new ModelAndView();
 	    List<SelectAllCourseResult> list =courseService.selectAllCourse();
 		mav.addObject("coursedate", list);
-		mav.setViewName("index");
+		mav.setViewName("select_subject");
 		return mav;
 	}
 	
