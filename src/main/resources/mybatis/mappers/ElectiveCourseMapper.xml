@@ -5,9 +5,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 注意，namespace的名字要和对应的接口的全路径名一致 -->
 <mapper namespace="cn.tarena.ht.mapper.ElectiveCourseMapper">
 
+<resultMap type="cn.tarena.ht.pojo.Course" id="courseResult">
+	<id property="cid" column="cid"></id>
+	<result property="tid" column="tid"/>
+	<result property="cname" column="cname"/>
+	<result property="cycle" column="cycle"/>
+	<result property="address" column="address"/>
+	<result property="time" column="time"/>
+  </resultMap>
 
+    <!-- 选课 -->
 	<insert id="InsertElectiveCourse" parameterType="int" >
 	INSERT INTO elective_course (sid,cid) VALUES (#{utid},#{cid})
 	</insert>
+	
+	
+	<!-- 显示学生所有课程 -->
+	<select id="showCourse" parameterType="int" resultType="cn.tarena.ht.result.ShowCourseResult">
+		select 
+		EC.ECID,
+		c.cname,c.cycle,c.ADDRESS,c."TIME",
+		ut.nick_name,
+		t.tname,
+		ec.works,ec.grade,ec.message
+		from ELECTIVE_COURSE ec 
+		LEFT JOIN COURSE c on c.CID=EC.CID
+		LEFT JOIN USERTABLE ut on ut.utid=c.tid
+		LEFT JOIN TOPIC t on t.tid=ec.tid
+		where EC.sid=#{utid}
+	</select>
+	
 	
 </mapper>

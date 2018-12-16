@@ -4,9 +4,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 注意，namespace的名字要和对应的接口的全路径名一致 -->
 <mapper namespace="cn.tarena.ht.mapper.CourseMapper">
+	<resultMap type="cn.tarena.ht.pojo.Course" id="courseResult">
+	<id property="cid" column="cid"></id>
+	<result property="tid" column="tid"/>
+	<result property="cname" column="cname"/>
+	<result property="cycle" column="cycle"/>
+	<result property="address" column="address"/>
+	<result property="time" column="time"/>
+  </resultMap>
 	<!-- 1.查询所有课程 -->
-	<select id="selectAllCourse" resultType="cn.tarena.ht.pojo.Course">
-		SELECT *  FROM course
+	<select id="selectAllCourse" resultType="cn.tarena.ht.result.SelectAllCourseResult">
+		SELECT 
+		c.cid,c.cname,c."CYCLE",c.ADDRESS,c."TIME",
+		ut.nick_name 
+		FROM course c
+		LEFT JOIN USERTABLE ut on c.tid=ut.utid
 	</select>
 	
 </mapper>

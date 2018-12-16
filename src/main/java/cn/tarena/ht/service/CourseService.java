@@ -9,13 +9,15 @@ import cn.tarena.ht.mapper.CourseMapper;
 import cn.tarena.ht.mapper.UserMapper;
 import cn.tarena.ht.pojo.Course;
 import cn.tarena.ht.pojo.UserTable;
+import cn.tarena.ht.result.SelectAllCourseResult;
 
 @Service
 public class CourseService {
 	@Autowired
 	private CourseMapper coursMapper;
 
-	public List<Course> selectAllCourse() {
+
+	public List<SelectAllCourseResult> selectAllCourse() {
 		return coursMapper.selectAllCourse();
 	}
 }

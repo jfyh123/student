@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.tarena.ht.pojo.Course;
 import cn.tarena.ht.pojo.UserTable;
+import cn.tarena.ht.result.SelectAllCourseResult;
+import cn.tarena.ht.result.ShowCourseResult;
 import cn.tarena.ht.service.CourseService;
 import cn.tarena.ht.service.ElectiveCourseService;
 import cn.tarena.ht.service.UserService;
@@ -33,7 +35,7 @@ public class StudentController {
 	@RequestMapping(value = "/electiveCourse",produces = "application/json;charset=utf-8")
 	public ModelAndView electiveCourse(HttpServletRequest request) {
 		ModelAndView mav=new ModelAndView();
-	    List<Course> list =courseService.selectAllCourse();
+	    List<SelectAllCourseResult> list =courseService.selectAllCourse();
 		mav.addObject("coursedate", list);
 		mav.setViewName("index");
 		return mav;
@@ -61,6 +63,30 @@ public class StudentController {
 	    if(flag){
 	    	mav.setViewName("index");
 	    }else{
+	    	mav.setViewName("index");
+	    }
+		return mav;
+	}
+	
+	/**
+	 * 列出学生已选课程
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/showCourse",produces = "application/json;charset=utf-8")
+	public ModelAndView ShowCourse(HttpServletRequest request,Integer utid) {
+		ModelAndView mav=new ModelAndView();
+		String msg="";
+		boolean flag =true;
+		if(utid==null){
+			msg="操作数据有误";
+			flag=false;
+		}
+		 List<ShowCourseResult> list=electiveCourseService.showCourse(utid);
+	    if(flag){
+	    	mav.addObject("courselist", list);
+	    	mav.setViewName("index");
+	    }else{
+	    	mav.addObject("msg", msg);
 	    	mav.setViewName("index");
 	    }
 		return mav;
