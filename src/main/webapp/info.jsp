@@ -17,16 +17,21 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		<form class="form-horizontal" role="form">
 		<div class="left">
 			<div class="form-group">
-				<label class="col-sm-2 control-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+				<label class="col-sm-2 control-label">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
 				<div class="col-sm-4">
 				  <input class="form-control" id="uname" name="uname" type="text" value="" disabled>
 				</div>
 			</div>
-			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">手机号码：</label>
+				<label class="col-sm-2 control-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
 				<div class="col-sm-4">
 				  <input class="form-control" id="phone" name="phone" type="text" value="" >
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">email：&nbsp;&nbsp;</label>
+				<div class="col-sm-4">
+				  <input class="form-control" id="email" name="email" type="text" value="" >
 				</div>
 			</div>
 		</div>
@@ -40,6 +45,12 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		        </select>
 		      </div>
 		    </div>
+		    <div class="form-group">
+				<label class="col-sm-2 control-label">手机号码：</label>
+				<div class="col-sm-4">
+				  <input class="form-control" id="phone" name="phone" type="text" value="" >
+				</div>
+			</div>
 		    <div class="form-group">
 				<label class="col-sm-2 control-label">email：&nbsp;&nbsp;</label>
 				<div class="col-sm-4">
