@@ -40,4 +40,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *  FROM usertable where utid=#{utid}
 	</select>
 	
+	
+	<!-- 保存个人信息 -->
+	<update id="UpdateInformation" parameterType="cn.tarena.ht.pojo.UserTable">
+		update usertable set nick_name=#{nick_name},email=#{email},phone=#{phone},gender=#{gender} where utid=#{utid}
+	</update>
+	
 </mapper>

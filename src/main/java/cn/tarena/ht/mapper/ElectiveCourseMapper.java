@@ -11,4 +11,6 @@ public interface ElectiveCourseMapper {
 	int InsertElectiveCourse(@Param(value="cid") Integer cid, @Param(value="utid") Integer utid);
 
 	List<ShowCourseResult> showCourse(Integer utid);
+
+	List<ShowCourseResult> showCourseGrade(Integer utid);
 }

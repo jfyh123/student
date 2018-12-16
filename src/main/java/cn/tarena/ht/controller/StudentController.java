@@ -2,6 +2,8 @@ package cn.tarena.ht.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +47,7 @@ public class StudentController {
 	 * 选择课程
 	 * @author luojiayng
 	 * */
+	//TODO  还有一个数据的校验没有做完
 	@RequestMapping(value = "/selectCourse",produces = "application/json;charset=utf-8")
 	public ModelAndView selectCourse(HttpServletRequest request,Integer cid,Integer utid) {
 		ModelAndView mav=new ModelAndView();
@@ -89,6 +92,20 @@ public class StudentController {
 	    	mav.addObject("msg", msg);
 	    	mav.setViewName("index");
 	    }
+		return mav;
+	}
+	
+	/**
+	 * 成绩查询
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/showCourseGrade",produces = "application/json;charset=utf-8")
+	public ModelAndView showCourseGrade(HttpServletRequest request,HttpSession session) {
+		UserTable get=(UserTable) session.getAttribute("user");
+		ModelAndView mav=new ModelAndView();		
+		 List<ShowCourseResult> list=electiveCourseService.showCourseGrade(get.getUtid());
+	    mav.addObject("courselist", list);
+	    mav.setViewName("index");
 		return mav;
 	}
 	

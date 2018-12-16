@@ -38,5 +38,12 @@ public class UserService {
 	public UserTable Information(int utid) {
 		return userMapper.selectById(utid);
 	}
+	/**
+	 * 保存个人信息
+	 * @author LuoJiaying
+	 * */
+	public int UpdateInformation(UserTable u) {
+		return userMapper.UpdateInformation(u);
+	}
 
 }

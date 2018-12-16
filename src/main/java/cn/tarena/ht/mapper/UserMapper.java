@@ -15,5 +15,7 @@ public interface UserMapper {
 
 	UserTable selectById(int utid);
 
+	int UpdateInformation(UserTable u);
+
 
 }

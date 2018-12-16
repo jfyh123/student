@@ -77,5 +77,23 @@ public class UserController {
 		return mav;
 	}
 	
+	/**
+	 * 保存个人信息
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/UpdateInformation",produces = "application/json;charset=utf-8")
+	public ModelAndView  UpdateInformation(HttpServletRequest request,UserTable u,HttpSession session) {
+		ModelAndView mav=new ModelAndView();
+		UserTable get=(UserTable) session.getAttribute("user");
+		u.setUtid(get.getUtid());
+		int i=userService.UpdateInformation(u);
+		if(i!=1){
+			mav.addObject("msg", "保存失败");
+		}else{
+			mav.addObject("msg", "保存成功");
+		}	
+		return mav;
+	}
+	
 	
 }

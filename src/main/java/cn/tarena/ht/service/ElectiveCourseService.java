@@ -31,4 +31,12 @@ public class ElectiveCourseService {
 	public List<ShowCourseResult> showCourse(Integer utid) {
 		return electiveCourseMapper.showCourse(utid);
 	}
+
+	/*
+	 *成绩查询
+	 * @author LuoJiaying
+	 * **/
+	public List<ShowCourseResult> showCourseGrade(Integer utid) {
+		return electiveCourseMapper.showCourseGrade(utid);
+	}
 }
