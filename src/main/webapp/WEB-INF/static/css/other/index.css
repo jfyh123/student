@@ -2,7 +2,8 @@
 .nav_top{
 	height:90px;
 	padding-top: 20px;
-	background:#F3F8FF;
+	background:#F5F5F5;
+/* 	background:#F3F8FF; */
 }
 .nav_logo{
 	float:left;
@@ -45,10 +46,12 @@
 }
 /* left */
 .nav_left{
+	margin-top:1%;
 	float:left;
 	width: 15%;
 	height: 100%;
-	background:#F3F8FF;
+	background:#F5F5F5;
+/* 	background:#F3F8FF; */
 }
 .nav_left ul{
 	margin:0px;
@@ -81,7 +84,7 @@
 	margin-left:16%;
 	margin-top:1%;
 	width: 83%;
-	height: 79%;
+	height: 80%;
 }
 
 iframe{

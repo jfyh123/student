@@ -10,6 +10,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bootstrap.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/other/index.css"/>
 	<title>课程设计选题系统</title>
@@ -38,6 +39,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		           </li>
 		           <li value="user/information">
 		           	<a href="#"><span>学生信息</span></a>
+		           </li>
+		           <li value="student/electiveCourse">
+		           	<a href="#"><span>学生选课</span></a>
 		           </li>
 		           <li>
 		           	<a href="#"><span>学生选题</span></a>
