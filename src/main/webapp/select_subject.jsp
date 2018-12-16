@@ -15,17 +15,89 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<title>课程设计选题系统</title>
 	<style type="text/css">
 		body{
-			margin-top: 3%;
-			margin-left:12%;
 			background-color: #F5F5F5;
+		}
+		th{
+			text-align: center;
+		}
+		td{
+			text-align: center;
+		}
+		.btn_bottom{
+			height:65px;
+			width:100%;
+		    border-bottom-left-radius: 5px;
+		    border-bottom-right-radius: 5px;
+			position: absolute;
+		    bottom: 0;
+		    left: 0;
+		    right: 0;
+		    text-align:center;
 		}
 	</style>
 </head>
-	<body>
-	</body>
-	<script type="text/javascript">
-	$(function(){
+<body>
+	<div>
+		<table class="table" border="1" align="center">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>科目</th>
+					<th>周期</th>
+					<th>时间</th>
+					<th>地点</th>
+					<th>选择</th>
+				</tr>
+			</thead>
+			<c:forEach var="item" items="${coursedate}" varStatus="status">
+			<tbody>
+				<tr>
+					<td>${ status.index + 1}</td>
+					<td>${item.cname}</td>
+					<td>${item.cycle}</td>
+					<td>${item.time}</td>
+					<td>${item.address}</td>
+					<td>
+						<input id="select" name="select" type="checkbox"  value="${item.cid}"/>
+					</td>
+				</tr>
+			</tbody>
+			</c:forEach>
+		</table>
+	</div>
+	<div class="btn_bottom">
+		<a class="btn btn-primary" onclick="saveSelect();">确认选择</a>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function() {
 		
 	});
-	</script>
+	
+	function saveSelect(){
+		obj = document.getElementsByName("select");
+	    var check_val = "";
+	    for(k in obj){
+	        if(obj[k].checked){
+	            check_val+=obj[k].value+",";
+	        }
+	    }
+	    alert(check_val);
+	    $.ajax({
+            url:"${pageContext.request.contextPath}/student/selectCourse",
+            type:"post",
+            data:{"course":check_val},
+            success:function(res){
+            	if(res.code==200){
+            		layer.msg(res.data);
+            	}else{
+            		layer.msg(res.data);
+            	}
+            },
+            error:function(res){
+            	layer.msg(res.data);
+            }
+        });
+	}
+</script>
 </html>
