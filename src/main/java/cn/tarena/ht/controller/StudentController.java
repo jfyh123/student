@@ -1,5 +1,6 @@
 package cn.tarena.ht.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import cn.tarena.ht.pojo.Course;
 import cn.tarena.ht.pojo.ElectiveCourse;
 import cn.tarena.ht.pojo.Topic;
 import cn.tarena.ht.pojo.UserTable;
+import cn.tarena.ht.result.CheckCourse;
 import cn.tarena.ht.result.SelectAllCourseResult;
 import cn.tarena.ht.result.ShowCourseResult;
 import cn.tarena.ht.service.CourseService;
@@ -54,32 +56,26 @@ public class StudentController {
 	 * */
 	//TODO  还有一个数据的校验没有做完
 	@RequestMapping(value = "/selectCourse",produces = "application/json;charset=utf-8")
-	public ModelAndView selectCourse(HttpServletRequest request,Integer cid,Integer utid) {
-		ModelAndView mav=new ModelAndView();
-		String msg="";
-		boolean flag =true;
-		if(cid==null||utid==null){
-			msg="操作数据有误";
-			flag=false;
+	public @ResponseBody Result  selectCourse(HttpServletRequest request,HttpSession session,String course) {
+		if(MyTools.isNullOrEmpty(course))
+		{
+			return ResultFactory.generateResult(ResultConstants.PARAMETER_CODE, 
+					ResultConstants.PARAMETER_MSG);
 		}
-		//检查这个学生有没有选过这个课
-		ElectiveCourse ec=electiveCourseService.CheckElectiveCourse(cid,utid);
-		if(ec!=null){
-			msg="你已经选过这个课程了";
-		}else{
-			 int i=electiveCourseService.InsertElectiveCourse(cid,utid);
-			  if(i!=1){
-			     msg="选课失败";
-			     flag=false;
-			   }
+		UserTable get=(UserTable) session.getAttribute("user");
+		List<CheckCourse> list=new ArrayList<CheckCourse>();
+		String[] id=course.split(",");
+		for(String cid:id){
+			//检查这个学生有没有选过这个课
+			CheckCourse cc=electiveCourseService.CheckElectiveCourse(Integer.parseInt(cid),get.getUtid());
+			if(cc!=null){
+				list.add(cc);
+			}else{
+				electiveCourseService.InsertElectiveCourse(Integer.parseInt(cid),get.getUtid());
+			}
 		}
-	    mav.addObject("msg", msg);
-	    if(flag){
-	    	mav.setViewName("index");
-	    }else{
-	    	mav.setViewName("index");
-	    }
-		return mav;
+		return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, 
+						ResultConstants.SUCCESS_MSG,list);
 	}
 	
 	/**
@@ -87,43 +83,29 @@ public class StudentController {
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/showCourse",produces = "application/json;charset=utf-8")
-	public ModelAndView ShowCourse(HttpServletRequest request,Integer utid) {
+	public ModelAndView ShowCourse(HttpServletRequest request,HttpSession session) {
+		UserTable get=(UserTable) session.getAttribute("user");
 		ModelAndView mav=new ModelAndView();
-		String msg="";
-		boolean flag =true;
-		if(utid==null){
-			msg="操作数据有误";
-			flag=false;
-		}
-		 List<ShowCourseResult> list=electiveCourseService.showCourse(utid);
-	    if(flag){
+		 List<ShowCourseResult> list=electiveCourseService.showCourse(get.getUtid());
 	    	mav.addObject("courselist", list);
 	    	mav.setViewName("index");
-	    }else{
-	    	mav.addObject("msg", msg);
-	    	mav.setViewName("index");
-	    }
 		return mav;
 	}
+	
 	/**
 	 *退课
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/deleteCourse",produces = "application/json;charset=utf-8")
-	public ModelAndView deleteCourse(HttpServletRequest request,HttpSession session, Integer ecid) {
-		UserTable get=(UserTable) session.getAttribute("user");
-		ModelAndView mav=new ModelAndView();
-	    if(get==null){
-	    	mav.addObject("msg", " 操作失败");
-	    }else{
-	    	int i=electiveCourseService.deleteCourse(ecid);
-	    	if(i!=1){
-				mav.addObject("msg", " 删除失败");
-			}else{
-				mav.addObject("msg", "保存成功");
-			}	
-	    }	
-		return mav;
+	public @ResponseBody Result deleteCourse(HttpServletRequest request, String course) {
+		String msg="";
+		String[] id=course.split(",");
+		for(String ecid:id){
+			electiveCourseService.deleteCourse(Integer.parseInt(ecid));
+			msg="退选成功";
+		}
+		return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, 
+				ResultConstants.SUCCESS_MSG,msg);
 	}
 	
 	/**

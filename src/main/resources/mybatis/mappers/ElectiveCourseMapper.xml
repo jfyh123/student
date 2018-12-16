@@ -50,8 +50,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 检查是否已经选过这个课程 -->
-	<select id="CheckElectiveCourse" parameterType="int" resultType="cn.tarena.ht.pojo.ElectiveCourse">
-	select * from ELECTIVE_COURSE where cid=${cid} and sid=${utid}
+	<select id="CheckElectiveCourse" parameterType="int" resultType="cn.tarena.ht.result.CheckCourse">
+		select 
+		EC.ECID,
+        c.cid,
+		c.cname,c.cycle,c.ADDRESS,c."TIME",
+        ut.nick_name
+		from ELECTIVE_COURSE ec 
+		LEFT JOIN COURSE c on c.CID=EC.CID
+		LEFT JOIN USERTABLE ut on ut.utid=c.tid
+		where  ec.cid=${cid} and ec.sid=${utid}
 	</select>
 	
    <delete id="deleteCourse" parameterType="int">

@@ -9,6 +9,7 @@ import cn.tarena.ht.mapper.ElectiveCourseMapper;
 import cn.tarena.ht.mapper.UserMapper;
 import cn.tarena.ht.pojo.ElectiveCourse;
 import cn.tarena.ht.pojo.UserTable;
+import cn.tarena.ht.result.CheckCourse;
 import cn.tarena.ht.result.ShowCourseResult;
 
 @Service
@@ -45,7 +46,7 @@ public class ElectiveCourseService {
 	 *检查学生是否已经选过这个课了
 	 * @author LuoJiaying
 	 * **/
-	public ElectiveCourse CheckElectiveCourse(Integer cid, Integer utid) {
+	public CheckCourse CheckElectiveCourse(Integer cid, Integer utid) {
 		return electiveCourseMapper.CheckElectiveCourse(cid,utid);
 	}
 	
