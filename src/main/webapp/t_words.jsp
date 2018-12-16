@@ -12,7 +12,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/layer.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>课程设计选题系统</title>
+	<title>留言</title>
 	<style type="text/css">
 		body{
 			background-color: #F5F5F5;
@@ -38,32 +38,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 </head>
 <body>
 	<div>
-		<table class="table" border="1" align="center">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>科目</th>
-					<th>周期</th>
-					<th>时间</th>
-					<th>地点</th>
-					<th>选择</th>
-				</tr>
-			</thead>
-			<c:forEach var="item" items="${coursedate}" varStatus="status">
-			<tbody>
-				<tr>
-					<td>${ status.index + 1}</td>
-					<td>${item.cname}</td>
-					<td>${item.cycle}</td>
-					<td>${item.time}</td>
-					<td>${item.address}</td>
-					<td>
-						<input id="select" name="select" type="checkbox"  value="${item.cid}"/>
-					</td>
-				</tr>
-			</tbody>
-			</c:forEach>
-		</table>
+		
 	</div>
 	<div class="btn_bottom">
 		<a class="btn btn-primary" onclick="saveSelect();">确认选择</a>
