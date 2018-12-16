@@ -1,4 +1,8 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+ path + "/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -6,21 +10,21 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="static/css/other/login.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/other/login.css"/>
 <title>课程设计选题系统</title>
 	<style type="text/css">
 		body {
 			margin-left: auto;
 			margin-right: auto;
 			margin-top: 200px;
-			background-image: url("static/images/bg1.jpg");
+			background-image: url("${pageContext.request.contextPath}/static/images/bg1.jpg");
 		}
 	</style>
 </head>
 <body>
 	<div class="navbar-fixed-top nav_top">
 		<div class="nav_logo">
-			<img class="pic_logo" src="static/images/book.png">
+			<img class="pic_logo" src="${pageContext.request.contextPath}/static/images/book.png">
 			<a class="nav_logo_text" href="#"><span>课程设计选题系统</span></a>
 		</div>
 	</div>
@@ -29,7 +33,7 @@
 		<div class="lg_tiele">
 			<span>账号密码登录</span>
 		</div>
-		<form  action="user/login" method="post">
+		<form action="login" method="post">
 			<div class="login">
 				<!--下面是用户名输入框-->
 				<div class="input-group">

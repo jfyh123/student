@@ -10,6 +10,19 @@
 <title>课程设计选题系统</title>
 </head>
 <body>
-
+	<label class="wel">
+		欢迎登录，课程设计选题系统！
+	</label>
 </body>
+	<style type="text/css">
+		body{
+			text-align: center;
+		}
+		.wel{
+		
+			font-size: 35px;
+			color: #888;
+			margin-top: 20%;
+		}
+	</style>
 </html>

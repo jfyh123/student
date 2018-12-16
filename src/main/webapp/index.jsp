@@ -23,7 +23,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		</div>
 		<div class="nav_user">
 			<img class="pic_user" src="${pageContext.request.contextPath}/static/images/user.png"> <a
-				class="nav_user_name"><span>${userdate.uname}</span></a>
+				class="nav_user_name"><span>${userdate.nick_name}</span></a>
 			<button type="button" class="btn btn-danger btn-sm nav_user_exit">退出</button>
 		</div>
 	</div>
@@ -52,7 +52,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	       </c:if>
 	       <c:if test="${userdate.type==1}">
 				<ul id="menu">
-		           <li class="select">
+		           <li value="/welcome.jsp" class="select">
 		           	<a><span>老师菜单</span></a>
 		           </li>
 		           <li>
