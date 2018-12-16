@@ -65,14 +65,12 @@ public class UserController {
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/information",produces = "application/json;charset=utf-8")
-	public @ResponseBody Result  information(HttpServletRequest request,UserTable u) {
-		//参数校验
-		if(u.getUtid()==null||u.getType()>1||u.getType()<0){
-			return ResultFactory.generateResult(ResultConstants.PARAMETER_CODE, 
-					ResultConstants.PARAMETER_MSG);
-		}	
+	public ModelAndView  information(HttpServletRequest request,UserTable u) {
+		ModelAndView mav=new ModelAndView();
 		UserTable user=userService.Information(u.getUtid());
-		return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, ResultConstants.SUCCESS_MSG,user);
+			mav.addObject("userdate", user);
+			mav.setViewName("info");
+		return mav;
 	}
 	
 	
