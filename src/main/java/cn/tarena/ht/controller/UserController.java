@@ -1,6 +1,8 @@
 package cn.tarena.ht.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,7 @@ public class UserController {
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/login",produces = "application/json;charset=utf-8")
-	public ModelAndView UserController(HttpServletRequest request,UserTable u) {
+	public ModelAndView UserController(HttpServletRequest request,UserTable u,HttpSession session) {
 		ModelAndView mav=new ModelAndView();
 		String msg="";
 		boolean flag =true;
@@ -57,6 +59,7 @@ public class UserController {
 			mav.addObject("msg", msg);
 			mav.setViewName("login");
 		}
+		session.setAttribute("user", user);
 		return mav;
 	}
 	
@@ -65,9 +68,10 @@ public class UserController {
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/information",produces = "application/json;charset=utf-8")
-	public ModelAndView  information(HttpServletRequest request,UserTable u) {
+	public ModelAndView  information(HttpServletRequest request,UserTable u,HttpSession session) {
 		ModelAndView mav=new ModelAndView();
-		UserTable user=userService.Information(u.getUtid());
+		UserTable get=(UserTable) session.getAttribute("user");
+		UserTable user=userService.Information(get.getUtid());
 			mav.addObject("userdate", user);
 			mav.setViewName("info");
 		return mav;
