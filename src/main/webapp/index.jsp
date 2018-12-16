@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+ path + "/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,12 +32,12 @@
 		<!-- menu -->
 		<div class="nav_left">
 			<c:if test="${userdate.type==0}">
-				<ul>
-		           <li class="select">
-		           	<a><span>学生菜单</span></a>
+				<ul id="menu">
+		           <li value="/welcome.jsp" class="select">
+		           	<a href="#"><span>学生菜单</span></a>
 		           </li>
-		           <li>
-		           	<a href="#"><span>个人信息</span></a>
+		           <li value="user/information">
+		           	<a href="#"><span>学生信息</span></a>
 		           </li>
 		           <li>
 		           	<a href="#"><span>学生选题</span></a>
@@ -47,12 +51,12 @@
 		       </ul>
 	       </c:if>
 	       <c:if test="${userdate.type==1}">
-				<ul>
+				<ul id="menu">
 		           <li class="select">
 		           	<a><span>老师菜单</span></a>
 		           </li>
 		           <li>
-		           	<a href="#"><span>个人信息</span></a>
+		           	<a><span>老师信息</span></a>
 		           </li>
 		           <li>
 		           	<a href="#"><span>上报题目</span></a>
@@ -68,9 +72,18 @@
        </div>
        <!-- content -->
 		<div class="content">
-			
+			<iframe  runat="server" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" 
+				src="${pageContext.request.contextPath}/welcome.jsp" id="selectPage"></iframe>
 		</div>
 	</div>
-	
+	<script type="text/javascript">
+		$("#menu li a").click(function(data) {
+			var BasePath = "<%=basePath%>";
+			$("#menu li").removeClass("select");
+			$(this).parent().addClass("select");
+			var choseValue = $('.select').attr("value");
+			document.getElementById("selectPage").src=BasePath+choseValue;
+		});
+		</script>
 	</body>
 </html>
