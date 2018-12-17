@@ -60,23 +60,26 @@ public class StudentController {
 	public @ResponseBody Result  selectCourse(HttpServletRequest request,HttpSession session,String course) {
 		if(MyTools.isNullOrEmpty(course))
 		{
-			return ResultFactory.generateResult(ResultConstants.PARAMETER_CODE, 
-					ResultConstants.PARAMETER_MSG);
+			return ResultFactory.generateResult(ResultConstants.ERROR_CODE, 
+					ResultConstants.ERROR_MSG);
 		}
 		UserTable get=(UserTable) session.getAttribute("user");
 		List<CheckCourse> list=new ArrayList<CheckCourse>();
 		String[] id=course.split(",");
+		boolean flag=true;
 		for(String cid:id){
-			//检查这个学生有没有选过这个课
-			CheckCourse cc=electiveCourseService.CheckElectiveCourse(Integer.parseInt(cid),get.getUtid());
-			if(cc!=null){
-				list.add(cc);
-			}else{
-				electiveCourseService.InsertElectiveCourse(Integer.parseInt(cid),get.getUtid());
-			}
+				int i=electiveCourseService.InsertElectiveCourse(Integer.parseInt(cid),get.getUtid());
+				if(i!=1){
+					flag=false;
+				}
 		}
-		return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, 
-						ResultConstants.SUCCESS_MSG,list);
+		if(flag){
+			return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, 
+					ResultConstants.SUCCESS_MSG);
+		}else{
+			return ResultFactory.generateResult(ResultConstants.ERROR_CODE, 
+					ResultConstants.ERROR_MSG);
+		}
 	}
 	
 	/**
