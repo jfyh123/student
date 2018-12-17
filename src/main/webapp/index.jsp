@@ -88,18 +88,25 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			var choseValue = $('.select').attr("value");
 			document.getElementById("selectPage").src=BasePath+choseValue;
 		});
+		
 		function exit(){
 			var BasePath = "<%=basePath%>";
-			$.ajax({
-	            url:"${pageContext.request.contextPath}/user/loginOut",
-	            type:"post",
-	            success:function(res){
-	            	window.location.href=BasePath+"/user/login"; 
-	            },
-	            error:function(res){
-	            	layer.msg("系统错误");
-	            }
-	        });
+			layer.confirm('是否退出登录？', {
+				  btn: ['确定','取消'] //按钮
+				}, function(){
+					$.ajax({
+	 		            url:"${pageContext.request.contextPath}/user/loginOut",
+	 		            type:"post",
+	 		            success:function(res){
+	 		            	window.location.href=BasePath+"/user/login"; 
+	 		            },
+	 		            error:function(res){
+	 		            	layer.msg("系统错误");
+	 		            }
+	 		        });
+				}, function(){
+					
+				});
 		}
 		</script>
 	</body>

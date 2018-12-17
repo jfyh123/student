@@ -56,6 +56,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				<tr>
 					<td>
 						<input id="select" name="select" type="checkbox" value="${item.ecid}"/>
+						<input type="hidden" id="ecid" name="ecid" value="${item.ecid}"/>
 					</td>
 					<td>${item.cname}</td>
 					<td>${item.time}</td>
@@ -64,7 +65,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<td>${item.grade}</td>
 					<td>${item.message}</td>
 					<td>
-						<a class="btn btn-primary" onclick="checkTitle();" value="${item.cid}">选题</a>
+						<a class="btn btn-success" onclick="selectTitle(${item.cid});" value="">选题</a>
 					</td>
 				</tr>
 			</tbody>
@@ -72,7 +73,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		</table>
 	</div>
 	<div class="btn_bottom">
-		<a class="btn btn-primary" onclick="outSubject();">退课</a>
+		<a class="btn btn-warning" onclick="outSubject();">退课</a>
 	</div>
 </body>
 <script type="text/javascript">
@@ -80,6 +81,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		
 	});
 	
+	//批量 退课
 	function outSubject(){
 		obj = document.getElementsByName("select");
 	    var check_val = "";
@@ -105,5 +107,19 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             }
         });
 	}
+	
+	//选题
+	function selectTitle(cid){
+		var ecid = $("#ecid").val();
+		layer.open({
+		  type: 2,
+		  area: ['700px', '450px'],
+		  fixed: false, //不固定
+		  maxmin: true,
+		  title:"选题页面",
+		  content: "${pageContext.request.contextPath}/student/showCourseTopic?cid="+cid+"&ecid="+ecid
+		});
+	}
+	
 </script>
 </html>
