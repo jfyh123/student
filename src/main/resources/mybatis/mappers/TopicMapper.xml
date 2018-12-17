@@ -5,7 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 注意，namespace的名字要和对应的接口的全路径名一致 -->
 <mapper namespace="cn.tarena.ht.mapper.TopicMapper">
 	
-	<select id="showCourseTopic" parameterType="int">
-		SELECT * from TOPIC where cid=#{cid}
+	<select id="showCourseTopic" parameterType="int"  resultType="cn.tarena.ht.pojo.Topic">
+		SELECT * from TOPIC where cid=#{cid} and sum >2
 	</select>
+	
+	<update id="updateTopicSum" parameterType="int">
+		update topic set sum=sum-1 where tid=#{tid}
+	</update>
 </mapper>
