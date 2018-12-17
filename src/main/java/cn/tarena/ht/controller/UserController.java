@@ -21,6 +21,18 @@ import cn.tarena.ht.utils.ResultFactory;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	/**
+	 *推出
+	 *@author luojiayng
+	 * */
+	@RequestMapping(value = "/loginOut",produces = "application/json;charset=utf-8")
+	public ModelAndView loginOut(HttpServletRequest request,UserTable u,HttpSession session) {
+		ModelAndView mav=new ModelAndView();
+		session.removeAttribute("user");
+		mav.setViewName("login");
+		return mav;
+	}
+	
 
 	/**
 	 * 用户登录

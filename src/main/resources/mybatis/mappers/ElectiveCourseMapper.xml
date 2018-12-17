@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 显示学生所有课程 -->
 	<select id="showCourse" parameterType="int" resultType="cn.tarena.ht.result.ShowCourseResult">
 		select 
-		EC.ECID,ec.cid
+		EC.ECID,ec.cid,
 		c.cname,c.cycle,c.ADDRESS,c."TIME",
 		ut.nick_name,
 		t.tname,
