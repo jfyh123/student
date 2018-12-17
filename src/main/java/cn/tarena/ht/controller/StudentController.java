@@ -117,11 +117,12 @@ public class StudentController {
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/showCourseTopic",produces = "application/json;charset=utf-8")
-	public ModelAndView showCourseTopic(HttpServletRequest request,HttpSession session, Integer cid) {
+	public ModelAndView showCourseTopic(HttpServletRequest request,HttpSession session, Integer cid, Integer ecid) {
 		UserTable get=(UserTable) session.getAttribute("user");
 		ModelAndView mav=new ModelAndView();
 	    	List<Topic> list=topicService.showCourseTopic(cid);
 	    	mav.addObject("topicdata", list);
+	    	mav.addObject("ecid", ecid);
 	    	mav.setViewName("select_title_confirm");
 		return mav;
 	}
@@ -131,10 +132,10 @@ public class StudentController {
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/selectCourseTopic",produces = "application/json;charset=utf-8")
-	public ModelAndView selectCourseTopic(HttpServletRequest request,HttpSession session, Integer cid,Integer tid,String works) {
+	public ModelAndView selectCourseTopic(HttpServletRequest request,HttpSession session, Integer ecid,Integer tid,String works) {
 		UserTable get=(UserTable) session.getAttribute("user");
 		ModelAndView mav=new ModelAndView();
-	    	int i=electiveCourseService.selectCourseTopic(get.getUtid(),cid,tid,works);
+	    	int i=electiveCourseService.selectCourseTopic(get.getUtid(),ecid,tid,works);
 	    	topicService.updateTopicSum(tid);//sum 减一
 	    	 List<ShowCourseResult> list=electiveCourseService.showCourse(get.getUtid());
 		    mav.addObject("courselist", list);
