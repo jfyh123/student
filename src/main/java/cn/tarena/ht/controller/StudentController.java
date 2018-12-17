@@ -122,7 +122,7 @@ public class StudentController {
 		ModelAndView mav=new ModelAndView();
 	    	List<Topic> list=topicService.showCourseTopic(cid);
 	    	mav.addObject("topicdata", list);
-	    	mav.setViewName("select_title");
+	    	mav.setViewName("select_title_confirm");
 		return mav;
 	}
 	
