@@ -56,7 +56,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				<tr>
 					<td>
 						<input id="select" name="select" type="checkbox" value="${item.ecid}"/>
-						<input type="hidden" id="ecid" name="ecid" value="${item.ecid}"/>
 					</td>
 					<td>${item.cname}</td>
 					<td>${item.time}</td>
@@ -65,7 +64,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<td>${item.grade}</td>
 					<td>${item.message}</td>
 					<td>
-						<a class="btn btn-success" onclick="selectTitle(${item.cid});" value="">选题</a>
+						<a class="btn btn-success" onclick="selectTitle(${item.cid},${item.ecid});" value="">选题</a>
 					</td>
 				</tr>
 			</tbody>
@@ -109,8 +108,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	}
 	
 	//选题
-	function selectTitle(cid){
-		var ecid = $("#ecid").val();
+	function selectTitle(cid,ecid){
 		layer.open({
 		  type: 2,
 		  area: ['700px', '450px'],
