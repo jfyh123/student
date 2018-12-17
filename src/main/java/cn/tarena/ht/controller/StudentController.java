@@ -120,12 +120,9 @@ public class StudentController {
 	public ModelAndView showCourseTopic(HttpServletRequest request,HttpSession session, Integer cid) {
 		UserTable get=(UserTable) session.getAttribute("user");
 		ModelAndView mav=new ModelAndView();
-	    if(get==null){
-	    	mav.addObject("msg", " 操作失败");
-	    }else{
 	    	List<Topic> list=topicService.showCourseTopic(cid);
-	    	mav.addObject("msg", " 操作失败");
-	    }	
+	    	mav.addObject("topicdata", list);
+	    	mav.setViewName("select_title");
 		return mav;
 	}
 	
