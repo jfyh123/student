@@ -1,31 +1,28 @@
-package cn.tarena.ht.pojo;
+package cn.tarena.ht.result;
 
-import java.io.Serializable;
-
-public class LeaveComments implements Serializable{
-	
+public class CommentsResult {
 	private Integer  lcid;//留言id
-	private Integer  sid;//学生id
-	private Integer  tid;//老师id
+	private String  nick_name;//学生名称
+	private String  uname;//学生学号
 	private String message;//留言
-	private Integer status;//状态
+	private Integer status;//状态 （0 未读， 1已读）
 	public Integer getLcid() {
 		return lcid;
 	}
 	public void setLcid(Integer lcid) {
 		this.lcid = lcid;
 	}
-	public Integer getSid() {
-		return sid;
+	public String getNick_name() {
+		return nick_name;
 	}
-	public void setSid(Integer sid) {
-		this.sid = sid;
+	public void setNick_name(String nick_name) {
+		this.nick_name = nick_name;
 	}
-	public Integer getTid() {
-		return tid;
+	public String getUname() {
+		return uname;
 	}
-	public void setTid(Integer tid) {
-		this.tid = tid;
+	public void setUname(String uname) {
+		this.uname = uname;
 	}
 	public String getMessage() {
 		return message;
@@ -39,7 +36,7 @@ public class LeaveComments implements Serializable{
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+	
+	
 
 }
-
-

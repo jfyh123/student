@@ -8,5 +8,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<insert id="InsertComments">
 			INSERT INTO LEAVE_COMMENTS (sid,tid,message) VALUES(#{utid},#{tid},#{message})
 		</insert>
+		<select id="showComment" parameterType="int" resultType="cn.tarena.ht.result.CommentsResult">
+			SELECT 
+			LC.LCID,
+			UT.NICK_NAME,
+			ut.UNAME,
+			LC.MESSAGE,
+			LC.STATUS
+			FROM LEAVE_COMMENTS lc
+			LEFT JOIN USERTABLE ut on UT.UTID = LC."SID" 
+			WHERE tid=#{utid}
+		</select>
+		
+		<update id="updateComment" parameterType="int">
+			UPDATE  LEAVE_COMMENTS SET STATUS=1 where LCID=#{lcid}
+		</update>
 	
 </mapper>
