@@ -82,10 +82,18 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<div class="form-group">
 		      <label class="col-sm-2 control-label">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
 		      <div class="col-sm-4">
-		        <select id="disabledSelect" class="form-control">
-		          <option value="1">男</option>
-		          <option value="0">女</option>
-		        </select>
+		      	<c:if test="${userdate.gender == 1}">
+			        <select id="gender" class="form-control">
+			          <option value="1">男</option>
+			          <option value="0">女</option>
+			        </select>
+		        </c:if>
+		        <c:if test="${userdate.gender == 0}">
+			        <select id="gender" class="form-control">
+			         <option value="0">女</option>
+			         <option value="1">男</option>
+			        </select>
+		        </c:if>
 		      </div>
 		    </div>
 		    <div class="form-group">
@@ -107,12 +115,12 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	function saveInfo(){
 		var nick_name = $("#nick_name").val();
 		var phone = $("#phone").val();
-		var disabledSelect = $("#disabledSelect").val();
+		var gender = $("#gender").val();
 		var email = $("#email").val();
 		$.ajax({
             url:"${pageContext.request.contextPath}/user/UpdateInformation",
             type:"post",
-            data:{"nick_name":nick_name,"phone":phone,"disabledSelect":disabledSelect,"email":email},
+            data:{"nick_name":nick_name,"phone":phone,"gender":gender,"email":email},
             success:function(res){
             	if(res.code==200){
             		layer.msg(res.data);
