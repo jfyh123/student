@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="static/css/other/login.css"/>
-<title>课程设计选题系统</title>
+<title>欢迎界面</title>
 </head>
 <body>
 	<label class="wel">
