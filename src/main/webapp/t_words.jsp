@@ -34,6 +34,14 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		    right: 0;
 		    text-align:center;
 		}
+		.open_page{
+			color: #fff;
+			font-size: 15px;
+			float: left;
+		}
+		.layui-layer-content{
+			background-color: #5FB878;
+		}
 	</style>
 </head>
 <body>
@@ -42,17 +50,18 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>教师名称</th>
+					<th>学生姓名</th>
 					<th>操作</th>
 				</tr>
 			</thead>
-			<c:forEach var="item" items="${teacherlist}" varStatus="status">
+			<c:forEach var="item" items="${commentslist}" varStatus="status">
 			<tbody>
 				<tr>
-					<td>${ status.index + 1}</td>
+					<td>${status.index + 1}</td>
 					<td>${item.nick_name}</td>
 					<td>
-						<a class="btn btn-success" onclick="leave_words(${item.utid});" value="">留言</a>
+						<a class="btn btn-success" onclick="check_words()">查看留言</a>
+						<input id="message" name="message" type="hidden" value="${item.message}">
 					</td>
 				</tr>
 			</tbody>
@@ -65,23 +74,18 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		
 	});
 	
-	function leave_words(tid){
-		var message="";
-		layer.prompt({title: '留言输入', formType: 2}, function(text, index){
-		    message=text;
-		    $.ajax({
-	            url:"${pageContext.request.contextPath}/student/putComments",
-	            type:"post",
-	            data:{"tid":tid,"message":message},
-	            success:function(res){
-	            	layer.msg("留言成功");
-            		layer.close(index);
-	            },
-	            error:function(res){
-	            	layer.msg("系统错误");
-	            }
-	        });
-	  	});
+	function check_words(){
+		var message = $("#message").val();
+		layer.open({
+   		  type: 1,
+   		  shade: false,
+   		  title: false, //不显示标题
+   		  area: ['360px','100px'],
+   		  content: "<ul><li><span class='open_page'>"+message+"<span></li></ul>",
+   		  cancel: function(){
+   		    
+   		  }
+   		});
 	}
 </script>
 </html>

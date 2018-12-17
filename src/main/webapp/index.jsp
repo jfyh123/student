@@ -68,7 +68,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		           <li>
 		           	<a href="#"><span>成绩提交</span></a>
 		           </li>
-		           <li>
+		           <li value="teacher/showComment">
 		           	<a href="#"><span>留言</span></a>
 		           </li>
 		       </ul>
