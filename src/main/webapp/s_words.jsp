@@ -67,7 +67,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	
 	function leave_words(tid){
 		var message="";
-		layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
+		layer.prompt({title: '留言输入', formType: 2}, function(text, index){
 		    message=text;
 		    $.ajax({
 	            url:"${pageContext.request.contextPath}/student/putComments",
