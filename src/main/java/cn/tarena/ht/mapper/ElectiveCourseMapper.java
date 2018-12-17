@@ -19,4 +19,6 @@ public interface ElectiveCourseMapper {
 	CheckCourse CheckElectiveCourse(@Param(value="cid") Integer cid, @Param(value="utid") Integer utid);
 
 	int deleteCourse(Integer ecid);
+
+	int selectCourseTopic(@Param(value="utid")  Integer utid, @Param(value="cid")  Integer cid, @Param(value="tid") Integer tid, @Param(value="works") String works);
 }

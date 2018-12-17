@@ -66,6 +66,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <delete id="deleteCourse" parameterType="int">
    		delete from ELECTIVE_COURSE where ecid=#{ecid}
    </delete>
+   
+   <update id="selectCourseTopic" parameterType="int">
+      update ELECTIVE_COURSE set tid=#{tid},works=#{works} where sid=#{sid} and cid=#{sid}
+   </update>
 
 	
 	

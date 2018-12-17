@@ -57,4 +57,8 @@ public class ElectiveCourseService {
 	public int deleteCourse(Integer ecid) {
 		return electiveCourseMapper.deleteCourse(ecid);
 	}
+
+	public int selectCourseTopic(Integer utid,Integer cid, Integer tid, String works) {
+		return electiveCourseMapper.selectCourseTopic(utid,cid,tid,works);
+	}
 }

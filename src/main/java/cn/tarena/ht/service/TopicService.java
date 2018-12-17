@@ -19,6 +19,10 @@ public class TopicService {
 		return topicMapper.showCourseTopic(cid);
 	}
 
+	public void updateTopicSum(Integer tid) {
+		topicMapper.updateTopicSum(tid);
+	}
+
 
 
 }

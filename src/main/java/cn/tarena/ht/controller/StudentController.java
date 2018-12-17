@@ -127,6 +127,22 @@ public class StudentController {
 	}
 	
 	/**
+	 *确认选题
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/selectCourseTopic",produces = "application/json;charset=utf-8")
+	public ModelAndView selectCourseTopic(HttpServletRequest request,HttpSession session, Integer cid,Integer tid,String works) {
+		UserTable get=(UserTable) session.getAttribute("user");
+		ModelAndView mav=new ModelAndView();
+	    	int i=electiveCourseService.selectCourseTopic(get.getUtid(),cid,tid,works);
+	    	topicService.updateTopicSum(tid);//sum 减一
+	    	 List<ShowCourseResult> list=electiveCourseService.showCourse(get.getUtid());
+		    mav.addObject("courselist", list);
+	    	mav.setViewName("select_title");
+		return mav;
+	}
+	
+	/**
 	 * 成绩查询
 	 * @author luojiayng
 	 * */
