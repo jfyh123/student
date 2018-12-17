@@ -8,6 +8,6 @@ public interface TopicMapper {
 
 	List<Topic> showCourseTopic(Integer cid);
 
-	void updateTopicSum(Integer tid);
+	int  updateTopicSum(Integer tid);
 
 }

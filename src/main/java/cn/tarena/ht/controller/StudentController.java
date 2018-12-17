@@ -136,8 +136,8 @@ public class StudentController {
 		UserTable get=(UserTable) session.getAttribute("user");
 		ModelAndView mav=new ModelAndView();
 	    	int i=electiveCourseService.selectCourseTopic(get.getUtid(),ecid,tid,works);
-	    	topicService.updateTopicSum(tid);//sum 减一
-	    	 List<ShowCourseResult> list=electiveCourseService.showCourse(get.getUtid());
+	    	int j=topicService.updateTopicSum(tid);//sum 减一
+	    	List<ShowCourseResult> list=electiveCourseService.showCourse(get.getUtid());
 		    mav.addObject("courselist", list);
 	    	mav.setViewName("select_title");
 		return mav;
@@ -153,9 +153,24 @@ public class StudentController {
 		ModelAndView mav=new ModelAndView();		
 		 List<ShowCourseResult> list=electiveCourseService.showCourseGrade(get.getUtid());
 	    mav.addObject("courselist", list);
-	    mav.setViewName("index");
+	    mav.setViewName("check_score");
 		return mav;
 	}
+	
+	/**
+	 *留言
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/showCourseTeacher",produces = "application/json;charset=utf-8")
+	public ModelAndView showCourseTeacher(HttpServletRequest request,HttpSession session) {
+		UserTable get=(UserTable) session.getAttribute("user");
+		ModelAndView mav=new ModelAndView();
+	    	
+	    mav.setViewName("select_title_confirm");
+		return mav;
+	}
+	
+	
 	
 	
 	
