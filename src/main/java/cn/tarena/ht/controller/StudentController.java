@@ -92,7 +92,7 @@ public class StudentController {
 		ModelAndView mav=new ModelAndView();
 		 List<ShowCourseResult> list=electiveCourseService.showCourse(get.getUtid());
 	    	mav.addObject("courselist", list);
-	    	mav.setViewName("index");
+	    	mav.setViewName("select_title");
 		return mav;
 	}
 	
