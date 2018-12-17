@@ -58,7 +58,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			</div>
 		</form>
 		<div class="lg_bottom">
-			<input id="flag" name="flag" type="hidden" value="${flag}">
+			<input id="status" name="status" type="hidden" value="${status}">
 			<input id="msg" name="msg" type="hidden" value="${msg}"> 
 		</div>
 	</div>
@@ -66,8 +66,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 </body>
 <script type="text/javascript">
 	$(function(){
+		var status =$("#status").val();
 		var msg =$("#msg").val();
-		if(msg!=""){
+		if(status==500){
 			layer.msg(msg);
 		}
 	})
