@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN COURSE c on c.CID=EC.CID
 		LEFT JOIN USERTABLE ut on ut.utid=c.tid
 		LEFT JOIN TOPIC t on t.tid=ec.tid
-		where EC.sid=#{utid}
+		where EC.sid=#{utid} and ec.tid is null
 	</select>
 
 	<!-- 成绩查询 -->
