@@ -42,7 +42,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>教师名称</th>
+					<th>学生名称</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -52,7 +52,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<td>${ status.index + 1}</td>
 					<td>${item.nick_name}</td>
 					<td>
-						<a class="btn btn-success" onclick="leave_words(${item.utid});" value="">留言</a>
+						<a class="btn btn-success" onclick="leave_words(${item.utid});" value="">查看留言</a>
 					</td>
 				</tr>
 			</tbody>
@@ -66,22 +66,15 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	});
 	
 	function leave_words(tid){
-		var message="";
-		layer.prompt({title: '留言输入', formType: 2}, function(text, index){
-		    message=text;
-		    $.ajax({
-	            url:"${pageContext.request.contextPath}/student/putComments",
-	            type:"post",
-	            data:{"tid":tid,"message":message},
-	            success:function(res){
-	            	layer.msg("留言成功");
-            		layer.close(index);
-	            },
-	            error:function(res){
-	            	layer.msg("系统错误");
-	            }
-	        });
-	  	});
+		layer.open({
+		  type: 1,
+		  shade: false,
+		  title: false, //不显示标题
+		  content: $('.layer_notice'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+		  cancel: function(){
+		    layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', {time: 5000, icon:6});
+		  }
+		});
 	}
 </script>
 </html>

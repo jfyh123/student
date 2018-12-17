@@ -57,7 +57,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
 				<div class="col-sm-4">
-				  <input class="form-control" id="nick_name" name="nick_name" type="text" value="${userdate.nick_name}" >
+				  <input class="form-control" id="nick_name" name="nick_name" maxlength="50" type="text" value="${userdate.nick_name}" >
 				</div>
 			</div>
 			<div class="form-group">
@@ -99,12 +99,12 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		    <div class="form-group">
 				<label class="col-sm-2 control-label">email：&nbsp;&nbsp;</label>
 				<div class="col-sm-4">
-				  <input class="form-control" id="email" name="email" type="text" value="${userdate.email}" >
+				  <input class="form-control" id="email" name="email" type="text" value="${userdate.email}" onchange="chekcEmail()">
 				</div>
 			</div>
 		</div>
 		<div class="btn_bottom">
-			<a class="btn btn-primary" onclick="saveInfo();">保存</a>
+			<input type="button" class="btn btn-primary" id="btn_save" name="btn_save" onclick="saveInfo();" value="保存"/>
 		</div>
 		</div>
 	</body>
@@ -137,13 +137,28 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	
 	function checkPhone(){ 
 	    var phone = document.getElementById('phone').value;
-	    if(!(/^1(3|4|5|7|8)\d{9}$/.test(phone))){ 
+	    if(!(/^1(3|4|5|7|8)\d{9}$/.test(phone))){
+		    $("#btn_save").attr("disabled",true);
 	        layer.tips('输入手机号码有误', '#phone', {
 		    	  tips: [1, '#3595CC'],
 		    	  time: 4000
 	    	});
+	    }else{
+	    	$("#btn_save").attr("disabled",false);
 	    }
-	    
+	}
+	
+	function chekcEmail(){
+		var email = document.getElementById('email').value;
+		if(!(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email))){
+			$("#btn_save").attr("disabled",true);
+			layer.tips('输入邮箱有误', '#email', {
+		    	  tips: [1, '#3595CC'],
+		    	  time: 4000
+	    	});
+		}else{
+	    	$("#btn_save").attr("disabled",false);
+	    }
 	}
 	</script>
 </html>
