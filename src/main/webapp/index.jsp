@@ -49,7 +49,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		           <li value="student/showCourseGrade">
 		           	<a href="#"><span>成绩查询</span></a>
 		           </li>
-		           <li value="">
+		           <li value="student/showCourseTeacher">
 		           	<a href="#"><span>留言</span></a>
 		           </li>
 		       </ul>

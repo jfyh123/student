@@ -38,10 +38,26 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 </head>
 <body>
 	<div>
-		
-	</div>
-	<div class="btn_bottom">
-		<a class="btn btn-primary" onclick="saveSelect();">确认选择</a>
+		<table class="table" border="1" align="center">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>教师名称</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<c:forEach var="item" items="${teacherlist}" varStatus="status">
+			<tbody>
+				<tr>
+					<td>${ status.index + 1}</td>
+					<td>${item.nick_name}</td>
+					<td>
+						<a class="btn btn-success" onclick="leave_words(${item.utid});" value="">留言</a>
+					</td>
+				</tr>
+			</tbody>
+			</c:forEach>
+		</table>
 	</div>
 </body>
 <script type="text/javascript">
@@ -49,29 +65,23 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		
 	});
 	
-	function saveSelect(){
-		obj = document.getElementsByName("select");
-	    var check_val = "";
-	    for(k in obj){
-	        if(obj[k].checked){
-	            check_val+=obj[k].value+",";
-	        }
-	    }
-	    $.ajax({
-            url:"${pageContext.request.contextPath}/student/selectCourse",
-            type:"post",
-            data:{"course":check_val},
-            success:function(res){
-            	if(res.code==200){
-            		layer.msg(res.data);
-            	}else{
-            		layer.msg(res.data);
-            	}
-            },
-            error:function(res){
-            	layer.msg(res.data);
-            }
-        });
+	function leave_words(tid){
+		var message="";
+		layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
+		    message=text;
+		    $.ajax({
+	            url:"${pageContext.request.contextPath}/student/putComments",
+	            type:"post",
+	            data:{"tid":tid,"message":message},
+	            success:function(res){
+	            	layer.msg("留言成功");
+            		layer.close(index);
+	            },
+	            error:function(res){
+	            	layer.msg("系统错误");
+	            }
+	        });
+	  	});
 	}
 </script>
 </html>
