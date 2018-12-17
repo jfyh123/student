@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import cn.tarena.ht.pojo.ElectiveCourse;
+import cn.tarena.ht.pojo.UserTable;
 import cn.tarena.ht.result.CheckCourse;
 import cn.tarena.ht.result.ShowCourseResult;
 
@@ -22,4 +23,6 @@ public interface ElectiveCourseMapper {
 
 	int selectCourseTopic(@Param("utid")  Integer utid, @Param("ecid")  Integer ecid, 
 			@Param("tid") Integer tid, @Param("works") String works);
+
+	List<UserTable> showCourseTeacher(Integer utid);
 }

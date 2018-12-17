@@ -5,6 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 注意，namespace的名字要和对应的接口的全路径名一致 -->
 <mapper namespace="cn.tarena.ht.mapper.LeaveCommentsMapper">
 
-
+		<insert id="InsertComments">
+			INSERT INTO LEAVE_COMMENTS (sid,tid,message) VALUES(1,2,'dddd')
+		</insert>
 	
 </mapper>

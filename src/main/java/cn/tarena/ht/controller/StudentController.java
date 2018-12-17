@@ -20,6 +20,7 @@ import cn.tarena.ht.result.SelectAllCourseResult;
 import cn.tarena.ht.result.ShowCourseResult;
 import cn.tarena.ht.service.CourseService;
 import cn.tarena.ht.service.ElectiveCourseService;
+import cn.tarena.ht.service.LeaveCommentsService;
 import cn.tarena.ht.service.TopicService;
 import cn.tarena.ht.service.UserService;
 import cn.tarena.ht.utils.MyTools;
@@ -34,6 +35,8 @@ public class StudentController {
 	private CourseService courseService;
 	@Autowired
 	private ElectiveCourseService electiveCourseService;
+	@Autowired
+	private LeaveCommentsService  leaveCommentsService;
 	@Autowired
 	private TopicService topicService;
 	
@@ -132,15 +135,17 @@ public class StudentController {
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/selectCourseTopic",produces = "application/json;charset=utf-8")
-	public ModelAndView selectCourseTopic(HttpServletRequest request,HttpSession session, Integer ecid,Integer tid,String works) {
+	public @ResponseBody Result selectCourseTopic(HttpServletRequest request,HttpSession session, Integer ecid,Integer tid,String works) {
 		UserTable get=(UserTable) session.getAttribute("user");
-		ModelAndView mav=new ModelAndView();
 	    	int i=electiveCourseService.selectCourseTopic(get.getUtid(),ecid,tid,works);
 	    	int j=topicService.updateTopicSum(tid);//sum 减一
-	    	List<ShowCourseResult> list=electiveCourseService.showCourse(get.getUtid());
-		    mav.addObject("courselist", list);
-	    	mav.setViewName("select_title");
-		return mav;
+	    	if(i==1){
+	    	return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, 
+					ResultConstants.SUCCESS_MSG);
+	    	}else{
+	    		return ResultFactory.generateResult(ResultConstants.ERROR_CODE, 
+						ResultConstants.ERROR_MSG);
+	    	}
 	}
 	
 	/**
@@ -165,8 +170,23 @@ public class StudentController {
 	public ModelAndView showCourseTeacher(HttpServletRequest request,HttpSession session) {
 		UserTable get=(UserTable) session.getAttribute("user");
 		ModelAndView mav=new ModelAndView();
-	    	
-	    mav.setViewName("select_title_confirm");
+		 List<UserTable> teacherlist=electiveCourseService.showCourseTeacher(get.getUtid());
+		 mav.addObject("teacherlist", teacherlist);
+	    mav.setViewName("s_words");
+		return mav;
+	}
+	
+	
+	/**
+	 * 提交留言
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/putComments",produces = "application/json;charset=utf-8")
+	public ModelAndView putComments(HttpServletRequest request,HttpSession session,Integer tid ,String message) {
+		UserTable get=(UserTable) session.getAttribute("user");
+		ModelAndView mav=new ModelAndView();
+		int i=leaveCommentsService.InsertComments(get.getUtid(),tid,message);
+	    mav.setViewName("s_words");
 		return mav;
 	}
 	

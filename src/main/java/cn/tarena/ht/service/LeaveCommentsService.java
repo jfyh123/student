@@ -13,6 +13,10 @@ import cn.tarena.ht.pojo.UserTable;
 public class LeaveCommentsService {
 	@Autowired
 	private LeaveCommentsMapper leaveCommentsMapper;
+
+	public int InsertComments(Integer utid, Integer tid, String message) {
+		return leaveCommentsMapper.InsertComments(utid,tid,message);
+	}
 	
 
 }

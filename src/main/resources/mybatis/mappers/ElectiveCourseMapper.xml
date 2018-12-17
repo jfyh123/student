@@ -70,6 +70,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <update id="selectCourseTopic">
       update ELECTIVE_COURSE set tid=#{tid},works=#{works} where ecid=#{ecid} and sid=#{utid}
    </update>
+   
+   
+   <select id="showCourseTeacher" parameterType="int" resultType="cn.tarena.ht.pojo.UserTable">
+		select 
+		distinct ut.utid,ut.nick_name 
+		from ELECTIVE_COURSE ec 
+		LEFT JOIN COURSE c on c.CID=EC.CID
+		LEFT JOIN USERTABLE ut on ut.utid=c.tid
+       where ec.sid=#{utid}
+	</select>
 
 	
 	

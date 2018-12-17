@@ -61,4 +61,8 @@ public class ElectiveCourseService {
 	public int selectCourseTopic(Integer utid,Integer ecid, Integer tid, String works) {
 		return electiveCourseMapper.selectCourseTopic(utid,ecid,tid,works);
 	}
+
+	public List<UserTable> showCourseTeacher(Integer utid) {
+		return electiveCourseMapper.showCourseTeacher(utid);
+	}
 }
