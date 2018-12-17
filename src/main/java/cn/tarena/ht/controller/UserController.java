@@ -30,6 +30,7 @@ public class UserController {
 	public ModelAndView UserController(HttpServletRequest request,UserTable u,HttpSession session) {
 		ModelAndView mav=new ModelAndView();
 		String msg="";
+		int status=200;
 		boolean flag =true;
 		UserTable user = null;
 		if(MyTools.isNullOrEmpty(u.getUname())||MyTools.isNullOrEmpty(u.getUname())){
@@ -39,14 +40,17 @@ public class UserController {
 			user=userService.UserLogin(u.getUname());
 			if(user==null){
 				flag = false;
+				status=500;
 				msg = "用户不存在";
 			}else{
 				if(!user.getPwd().equals(u.getPwd())){
 					flag = false;
+					status=500;
 					msg = "密码错误";
 				}
 				if(user.getStatus()==1){
 					flag = false;
+					status=500;
 					msg = "用户已冻结！";
 				}
 			}
@@ -54,12 +58,13 @@ public class UserController {
 		}
 		if(flag){
 			mav.addObject("userdate", user);
+			mav.addObject("status", status);
 			mav.setViewName("index");
 		}else{
 			mav.addObject("msg", msg);
+			mav.addObject("status", status);
 			mav.setViewName("login");
 		}
-		mav.addObject("flag",flag );
 		session.setAttribute("user", user);
 		return mav;
 	}
