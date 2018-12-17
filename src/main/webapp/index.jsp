@@ -10,7 +10,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bootstrap.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/layer.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/other/index.css"/>
 	<title>课程设计选题系统</title>
@@ -25,7 +25,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		<div class="nav_user">
 			<img class="pic_user" src="${pageContext.request.contextPath}/static/images/user.png"> <a
 				class="nav_user_name"><span>${userdate.nick_name}</span></a>
-			<button type="button" class="btn btn-danger btn-sm nav_user_exit">退出</button>
+			<a class="btn btn-danger btn-sm nav_user_exit" onclick="exit()">退出</a>
 		</div>
 	</div>
 	<!-- center -->
@@ -43,13 +43,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		           <li value="student/electiveCourse">
 		           	<a href="#"><span>学生选课</span></a>
 		           </li>
-		           <li>
+		           <li value="student/showCourse">
 		           	<a href="#"><span>学生选题</span></a>
 		           </li>
-		           <li>
+		           <li value="student/showCourseGrade">
 		           	<a href="#"><span>成绩查询</span></a>
 		           </li>
-		           <li>
+		           <li value="">
 		           	<a href="#"><span>留言</span></a>
 		           </li>
 		       </ul>
@@ -88,6 +88,19 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			var choseValue = $('.select').attr("value");
 			document.getElementById("selectPage").src=BasePath+choseValue;
 		});
+		function exit(){
+			var BasePath = "<%=basePath%>";
+			$.ajax({
+	            url:"${pageContext.request.contextPath}/user/loginOut",
+	            type:"post",
+	            success:function(res){
+	            	window.location.href=BasePath+"/user/login"; 
+	            },
+	            error:function(res){
+	            	layer.msg("系统错误");
+	            }
+	        });
+		}
 		</script>
 	</body>
 </html>
