@@ -41,14 +41,14 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"></span> <input
 						id="uname" name="uname" type="text" class="form-control" placeholder="用户名"
-						aria-describedby="basic-addon1">
+						aria-describedby="basic-addon1" onblur="checkName(this.value);">
 				</div>
 				<br>
 				<!--下面是密码输入框-->
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"></span> <input type="password"
 						id="pwd" name="pwd" type="text" class="form-control" placeholder="密码"
-						aria-describedby="basic-addon1">
+						aria-describedby="basic-addon1" onblur="checkPwd(this.value);">
 				</div>
 				<br>
 				<!--下面是登陆按钮,包括颜色控制-->
@@ -72,4 +72,22 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			layer.msg(msg);
 		}
 	})
+	
+	function checkName(value){
+		if(value==""){
+			layer.tips('用户名不能为空！', '#uname', {
+		    	  tips: [1, '#3595CC'],
+		    	  time: 4000
+	  		});
+		}
+	}
+	
+	function checkPwd(value){
+		if(value==""){
+			layer.tips('密码不能为空！', '#pwd', {
+		    	  tips: [1, '#3595CC'],
+		    	  time: 4000
+	  		});
+		}
+	}
 </script>

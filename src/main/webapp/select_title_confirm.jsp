@@ -73,6 +73,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	});
 	//选题
 	function selectTitle(tid){
+		var BasePath = "<%=basePath%>";
 		var ecid = $("#ecid").val();
 		 var works = $("#works"+tid).val();
 		layer.confirm('是否确定选题？', {
@@ -84,14 +85,16 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		            data:{"tid":tid,"ecid":ecid,"works":works},
 		            success:function(res){
 		            	if(res.code==200){
-		            		layer.msg(res.data);
-		            		window.location.reload();
+		            		layer.msg("选题成功");
+		            		parent.location.reload(); // 父页面刷新
+		            		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+		            		parent.layer.close(index);
 		            	}else{
-		            		layer.msg(res.data);
+		            		layer.msg("选题失败！");
 		            	}
 		            },
 		            error:function(res){
-		            	layer.msg(res.data);
+		            	layer.msg("系统错误");
 		            }
 		        });
 			}, function(){

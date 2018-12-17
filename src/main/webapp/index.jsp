@@ -57,10 +57,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	       <c:if test="${userdate.type==1}">
 				<ul id="menu">
 		           <li value="/welcome.jsp" class="select">
-		           	<a><span>老师菜单</span></a>
+		           	<a href="#"><span>老师菜单</span></a>
 		           </li>
-		           <li>
-		           	<a><span>老师信息</span></a>
+		           <li value="user/information">
+		           	<a href="#"><span>老师信息</span></a>
 		           </li>
 		           <li>
 		           	<a href="#"><span>上报题目</span></a>

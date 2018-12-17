@@ -63,7 +63,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">手机号码：</label>
 				<div class="col-sm-4">
-				  <input class="form-control" id="phone" name="phone" type="text" value="${userdate.phone}" >
+				  <input class="form-control" id="phone" name="phone" onchange="checkPhone();" type="text" value="${userdate.phone}" >
 				</div>
 			</div>
 		</div>
@@ -126,12 +126,16 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             }
         });
 	}
+	
 	function checkPhone(){ 
 	    var phone = document.getElementById('phone').value;
 	    if(!(/^1(3|4|5|7|8)\d{9}$/.test(phone))){ 
-	        alert("手机号码有误，请重填");  
-	        return false; 
-	    } 
+	        layer.tips('输入手机号码有误', '#phone', {
+		    	  tips: [1, '#3595CC'],
+		    	  time: 4000
+	    	});
+	    }
+	    
 	}
 	</script>
 </html>

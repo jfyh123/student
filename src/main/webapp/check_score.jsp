@@ -42,31 +42,28 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>科目</th>
-					<th>周期</th>
-					<th>时间</th>
-					<th>地点</th>
-					<th>选择</th>
+					<th>课程</th>
+					<th>题目</th>
+					<th>老师</th>
+					<th>作品</th>
+					<th>评分</th>
+					<th>评语</th>
 				</tr>
 			</thead>
-			<c:forEach var="item" items="${coursedate}" varStatus="status">
+			<c:forEach var="item" items="${courselist}" varStatus="status">
 			<tbody>
 				<tr>
 					<td>${ status.index + 1}</td>
 					<td>${item.cname}</td>
-					<td>${item.cycle}</td>
-					<td>${item.time}</td>
-					<td>${item.address}</td>
-					<td>
-						<input id="select" name="select" type="checkbox"  value="${item.cid}"/>
-					</td>
+					<td>${item.tname}</td>
+					<td>${item.nick_name}</td>
+					<td>${item.works}</td>
+					<td>${item.grade}</td>
+					<td>${item.message}</td>
 				</tr>
 			</tbody>
 			</c:forEach>
 		</table>
-	</div>
-	<div class="btn_bottom">
-		<a class="btn btn-primary" onclick="saveSelect();">确认选择</a>
 	</div>
 </body>
 <script type="text/javascript">
