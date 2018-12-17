@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="cn.tarena.ht.mapper.LeaveCommentsMapper">
 
 		<insert id="InsertComments">
-			INSERT INTO LEAVE_COMMENTS (sid,tid,message) VALUES(1,2,'dddd')
+			INSERT INTO LEAVE_COMMENTS (sid,tid,message) VALUES(#{utid},#{tid},#{message})
 		</insert>
 	
 </mapper>

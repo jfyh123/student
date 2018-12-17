@@ -20,4 +20,10 @@ public class CourseService {
 	public List<SelectAllCourseResult> selectAllCourse(Integer utid) {
 		return coursMapper.selectAllCourse(utid);
 	}
+
+
+	public List<Course> showCourseTeacher(Integer utid) {
+		// TODO Auto-generated method stub
+		return coursMapper.showCourseTeacher(utid);
+	}
 }

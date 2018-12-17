@@ -21,4 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN USERTABLE ut on c.tid=ut.utid
 	</select>
 	
+	<select id="showCourseTeacher" parameterType="int" resultType="cn.tarena.ht.pojo.Course">
+		SELECT   *  FROM course where tid=#{utid}
+	</select>
+	
 </mapper>
