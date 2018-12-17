@@ -89,6 +89,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             success:function(res){
             	if(res.code==200){
             		layer.msg(res.data);
+            		window.location.reload();
             	}else{
             		layer.msg(res.data);
             	}
