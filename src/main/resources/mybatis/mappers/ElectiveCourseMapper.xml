@@ -34,6 +34,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN TOPIC t on t.tid=ec.tid
 		where EC.sid=#{utid}
 	</select>
+		<!-- 显示学生所有课程 -->
+	<select id="showCourse" parameterType="int" resultType="cn.tarena.ht.result.ShowCourseResult">
+		select 
+		EC.ECID,ec.cid
+		c.cname,c.cycle,c.ADDRESS,c."TIME",
+		ut.nick_name,
+		t.tname,
+		ec.works,ec.grade,ec.message
+		from ELECTIVE_COURSE ec 
+		LEFT JOIN COURSE c on c.CID=EC.CID
+		LEFT JOIN USERTABLE ut on ut.utid=c.tid
+		LEFT JOIN TOPIC t on t.tid=ec.tid
+		where EC.sid=#{utid}
+	</select>
 	<!-- 成绩查询 -->
 	<select id="showCourseGrade" parameterType="int" resultType="cn.tarena.ht.result.ShowCourseResult">
 		select 

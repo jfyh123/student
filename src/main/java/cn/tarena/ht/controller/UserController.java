@@ -59,6 +59,7 @@ public class UserController {
 			mav.addObject("msg", msg);
 			mav.setViewName("login");
 		}
+		mav.addObject("flag",flag );
 		session.setAttribute("user", user);
 		return mav;
 	}

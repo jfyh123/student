@@ -7,6 +7,6 @@ import cn.tarena.ht.result.SelectAllCourseResult;
 
 public interface CourseMapper {
 
-	List<SelectAllCourseResult> selectAllCourse();
+	List<SelectAllCourseResult> selectAllCourse(Integer utid);
 
 }

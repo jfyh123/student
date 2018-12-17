@@ -42,9 +42,10 @@ public class StudentController {
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/electiveCourse",produces = "application/json;charset=utf-8")
-	public ModelAndView electiveCourse(HttpServletRequest request) {
+	public ModelAndView electiveCourse(HttpServletRequest request,HttpSession session) {
 		ModelAndView mav=new ModelAndView();
-	    List<SelectAllCourseResult> list =courseService.selectAllCourse();
+		UserTable get=(UserTable) session.getAttribute("user");
+	    List<SelectAllCourseResult> list =courseService.selectAllCourse(get.getUtid());
 		mav.addObject("coursedate", list);
 		mav.setViewName("select_subject");
 		return mav;

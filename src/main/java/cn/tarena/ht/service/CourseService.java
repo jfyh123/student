@@ -17,7 +17,7 @@ public class CourseService {
 	private CourseMapper coursMapper;
 
 
-	public List<SelectAllCourseResult> selectAllCourse() {
-		return coursMapper.selectAllCourse();
+	public List<SelectAllCourseResult> selectAllCourse(Integer utid) {
+		return coursMapper.selectAllCourse(utid);
 	}
 }
