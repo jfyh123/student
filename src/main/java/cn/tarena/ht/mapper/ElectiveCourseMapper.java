@@ -8,6 +8,7 @@ import cn.tarena.ht.pojo.ElectiveCourse;
 import cn.tarena.ht.pojo.UserTable;
 import cn.tarena.ht.result.CheckCourse;
 import cn.tarena.ht.result.ShowCourseResult;
+import cn.tarena.ht.result.StudentTopic;
 
 public interface ElectiveCourseMapper {
 
@@ -25,4 +26,6 @@ public interface ElectiveCourseMapper {
 			@Param("tid") Integer tid, @Param("works") String works);
 
 	List<UserTable> showCourseTeacher(Integer utid);
+
+	List<StudentTopic> showSelectTopic(Integer utid);
 }

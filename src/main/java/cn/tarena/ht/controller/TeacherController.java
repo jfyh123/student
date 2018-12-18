@@ -91,7 +91,7 @@ public class TeacherController {
 	public ModelAndView showSelectTopic(HttpServletRequest request,HttpSession session) {
 		ModelAndView mav=new ModelAndView();
 		UserTable get=(UserTable) session.getAttribute("user");
-		//List<StudentTopic> list = electiveCourseService.showSelectTopic()
+		List<StudentTopic> list = electiveCourseService.showSelectTopic(get.getUtid());
 	    	mav.setViewName("");
 		return mav;
 	}

@@ -11,6 +11,7 @@ import cn.tarena.ht.pojo.ElectiveCourse;
 import cn.tarena.ht.pojo.UserTable;
 import cn.tarena.ht.result.CheckCourse;
 import cn.tarena.ht.result.ShowCourseResult;
+import cn.tarena.ht.result.StudentTopic;
 
 @Service
 public class ElectiveCourseService {
@@ -64,5 +65,10 @@ public class ElectiveCourseService {
 
 	public List<UserTable> showCourseTeacher(Integer utid) {
 		return electiveCourseMapper.showCourseTeacher(utid);
+	}
+
+	public List<StudentTopic> showSelectTopic(Integer utid) {
+		// TODO Auto-generated method stub
+		return electiveCourseMapper.showSelectTopic(utid);
 	}
 }
