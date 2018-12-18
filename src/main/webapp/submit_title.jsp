@@ -12,7 +12,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/layer.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>老师留言</title>
+	<title>成绩查询</title>
 	<style type="text/css">
 		body{
 			background-color: #F5F5F5;
@@ -34,14 +34,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		    right: 0;
 		    text-align:center;
 		}
-		.open_page{
-			color: #fff;
-			font-size: 15px;
-			float: left;
-		}
-		.layui-layer-content{
-			background-color: #5FB878;
-		}
 	</style>
 </head>
 <body>
@@ -50,18 +42,24 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>学生姓名</th>
-					<th>操作</th>
+					<th>课程</th>
+					<th>题目</th>
+					<th>老师</th>
+					<th>作品</th>
+					<th>评分</th>
+					<th>评语</th>
 				</tr>
 			</thead>
-			<c:forEach var="item" items="${commentslist}" varStatus="status">
+			<c:forEach var="item" items="${courselist}" varStatus="status">
 			<tbody>
 				<tr>
-					<td>${status.index + 1}</td>
+					<td>${ status.index + 1}</td>
+					<td>${item.cname}</td>
+					<td>${item.tname}</td>
 					<td>${item.nick_name}</td>
-					<td>
-						<a class="btn btn-success" onclick="check_words('${item.message}',${item.lcid});">查看留言</a>
-					</td>
+					<td>${item.works}</td>
+					<td>${item.grade}</td>
+					<td>${item.message}</td>
 				</tr>
 			</tbody>
 			</c:forEach>
@@ -73,26 +71,29 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		
 	});
 	
-	function check_words(message,lcid){
-		layer.open({
-   		  type: 1,
-   		  shade: false,
-   		  title: false, //不显示标题
-   		  area: ['360px','100px'],
-   		  content: "<ul><li><span class='open_page'>"+message+"<span></li></ul>",
-   		  cancel: function(){
-   			$.ajax({
-	            url:"${pageContext.request.contextPath}/teacher/updateComment",
-	            type:"post",
-	            data:{"lcid":lcid},
-	            success:function(res){
-	            },
-	            error:function(res){
-	            	layer.msg("系统错误");
-	            }
-	        });
-   		  }
-   		});
+	function saveSelect(){
+		obj = document.getElementsByName("select");
+	    var check_val = "";
+	    for(k in obj){
+	        if(obj[k].checked){
+	            check_val+=obj[k].value+",";
+	        }
+	    }
+	    $.ajax({
+            url:"${pageContext.request.contextPath}/student/selectCourse",
+            type:"post",
+            data:{"course":check_val},
+            success:function(res){
+            	if(res.code==200){
+            		layer.msg(res.data);
+            	}else{
+            		layer.msg(res.data);
+            	}
+            },
+            error:function(res){
+            	layer.msg(res.data);
+            }
+        });
 	}
 </script>
 </html>
