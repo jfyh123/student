@@ -62,7 +62,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<td>${item.claim}</td>
 					<td>${item.works}</td>
 					<td>
-						<a class="btn btn-primary" onclick="updateScore();">批改成绩</a>
+						<a class="btn btn-success" onclick="updateScore(${item.ecid});">批改成绩</a>
 					</td>
 				</tr>
 			</tbody>
@@ -75,8 +75,24 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		
 	});
 	
-	function updateScore(){
-		
+	function updateScore(ecid){
+		layer.prompt({title: '输入成绩', formType: 3}, function(grade, index){
+		  layer.close(index);
+		  layer.prompt({title: '输入评语', formType: 2}, function(message, index){
+		    layer.close(index);
+		    $.ajax({
+	            url:"${pageContext.request.contextPath}/teacher/submitScore",
+	            type:"post",
+	            data:{"ecid":ecid,"grade":grade,"message":message},
+	            success:function(res){
+	            	layer.msg("批改成绩已保存");
+	            },
+	            error:function(res){
+	            	layer.msg("系统错误");
+	            }
+	        });
+		  });
+		});
 	}
 </script>
 </html>
