@@ -95,7 +95,7 @@ public class StudentController {
 		ModelAndView mav=new ModelAndView();
 		 List<ShowCourseResult> list=electiveCourseService.showCourse(get.getUtid());
 	    	mav.addObject("courselist", list);
-	    	mav.setViewName("select_title");
+	    	mav.setViewName("select_title1");
 		return mav;
 	}
 	
