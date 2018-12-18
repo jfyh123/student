@@ -68,7 +68,10 @@ public class ElectiveCourseService {
 	}
 
 	public List<StudentTopic> showSelectTopic(Integer utid) {
-		// TODO Auto-generated method stub
 		return electiveCourseMapper.showSelectTopic(utid);
+	}
+
+	public int submitScore(Integer ecid, Integer grade, String message) {
+		return electiveCourseMapper.submitScore(ecid,grade,message);
 	}
 }

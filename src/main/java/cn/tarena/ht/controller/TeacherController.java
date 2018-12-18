@@ -92,9 +92,27 @@ public class TeacherController {
 		ModelAndView mav=new ModelAndView();
 		UserTable get=(UserTable) session.getAttribute("user");
 		List<StudentTopic> list = electiveCourseService.showSelectTopic(get.getUtid());
-	    	mav.setViewName("");
+		mav.addObject("scorelist", list);
+    	mav.setViewName("submit_score");
 		return mav;
 	}
+	
+	/**
+	 * 评分评语
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/submitScore",produces = "application/json;charset=utf-8")
+	public @ResponseBody Result submitScore(HttpServletRequest request,Integer ecid,Integer grade,String message) {
+		int i =electiveCourseService.submitScore(ecid,grade,message);
+	    if(i==1){
+	    	 return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, 
+						ResultConstants.SUCCESS_MSG);
+	    }else{
+	    	 return ResultFactory.generateResult(ResultConstants.ERROR_CODE, 
+						ResultConstants.ERROR_MSG);
+	    }	   
+	}
+	
 	
 	
 	

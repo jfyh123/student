@@ -28,4 +28,6 @@ public interface ElectiveCourseMapper {
 	List<UserTable> showCourseTeacher(Integer utid);
 
 	List<StudentTopic> showSelectTopic(Integer utid);
+
+	int submitScore(@Param("ecid") Integer ecid, @Param("grade") Integer grade, @Param("message") String message);
 }

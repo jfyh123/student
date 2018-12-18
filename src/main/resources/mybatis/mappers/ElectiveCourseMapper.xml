@@ -83,8 +83,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="showSelectTopic" parameterType="int" resultType="cn.tarena.ht.result.StudentTopic">
-		
+		select 
+		EC.ECID,
+		stu.uname,
+		stu.nick_name,
+		c.CNAME,
+		t.tname,t.claim,ec.works
+		from ELECTIVE_COURSE ec 
+		LEFT JOIN COURSE c on c.CID=EC.CID
+		LEFT JOIN USERTABLE stu on stu.utid=ec.sid
+		LEFT JOIN TOPIC t on t.tid=ec.tid
+		where c.TID=#{utid} and ec.works  is  not  null and ec.tid  is  not  null and EC.GRADE is NULL
 	</select>
+	
+	<update id="submitScore">
+		UPDATE ELECTIVE_COURSE set GRADE=#{grade},MESSAGE=#{message} where ECID=#{ecid}
+	</update>
 
 	
 	
