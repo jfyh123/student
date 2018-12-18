@@ -5,15 +5,8 @@ import java.io.Serializable;
 public class Topic implements Serializable{
 	private Integer  tid;//题目id
 	private Integer  cid;//课程id
-	private String cname;//课程名称
 	private String tname;//题目名称
 	private String claim;//要求
-	public String getCname() {
-		return cname;
-	}
-	public void setCname(String cname) {
-		this.cname = cname;
-	}
 	private Integer sum;//数量
 	public Integer getTid() {
 		return tid;
@@ -46,7 +39,6 @@ public class Topic implements Serializable{
 		this.sum = sum;
 	}
 
-	
 	
 }
 
