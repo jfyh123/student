@@ -42,25 +42,18 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>课程</th>
-					<th>周期</th>
-					<th>时间</th>
-					<th>地址</th>
-					<th>选题操作</th>
+					<th>题目名称</th>
+					<th>要求</th>
+					<th>数量</th>
 				</tr>
 			</thead>
-			<c:forEach var="item" items="${courselist}" varStatus="status">
+			<c:forEach var="item" items="${topiclist}" varStatus="status">
 			<tbody>
 				<tr>
 					<td>${status.index + 1}</td>
-					<td>${item.cname}</td>
-					<td>${item.cycle}</td>
-					<td>${item.time}</td>
-					<td>${item.address}</td>
-					<td>
-						<a class="btn btn-primary" onclick="chekcTitle(${item.cid});">查看</a>
-						<a style="margin-left: 20px;" class="btn btn-success" onclick="addTitle(${item.cid});">添加</a>
-					</td>
+					<td>${item.tname}</td>
+					<td>${item.claim}</td>
+					<td>${item.sum}</td>
 				</tr>
 			</tbody>
 			</c:forEach>
@@ -69,40 +62,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 </body>
 <script type="text/javascript">
 	$(function() {
-		
 	});
-	
-	//查看
-	function chekcTitle(){
-		layer.open({
-		  type: 2,
-		  area: ['700px', '450px'],
-		  fixed: false, //不固定
-		  maxmin: true,
-		  title:"选题页面",
-		  content: "${pageContext.request.contextPath}/teacher/showCourseTopic"
-		});
-	}
-	
-	//添加选题
-	function addTitle(){
-		var message="";
-		layer.prompt({title: '输入添加的课题', formType: 2}, function(text, index){
-		    message=text;
-		    $.ajax({
-	            url:"${pageContext.request.contextPath}/teacher/addCourseTopic",
-	            type:"post",
-	            data:{"tid":tid,"message":message},
-	            success:function(res){
-	            	layer.msg("留言成功");
-            		layer.close(index);
-	            },
-	            error:function(res){
-	            	layer.msg("系统错误");
-	            }
-	        });
-	  	});
-	}
-	
 </script>
 </html>

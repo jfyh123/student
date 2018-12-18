@@ -73,35 +73,37 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	});
 	
 	//查看
-	function chekcTitle(){
+	function chekcTitle(cid){
 		layer.open({
 		  type: 2,
 		  area: ['700px', '450px'],
 		  fixed: false, //不固定
 		  maxmin: true,
-		  title:"选题页面",
-		  content: "${pageContext.request.contextPath}/teacher/showCourseTopic"
+		  title:"查看选题",
+		  content: "${pageContext.request.contextPath}/teacher/showCourseTopic?cid="+cid
 		});
 	}
 	
 	//添加选题
-	function addTitle(){
-		var message="";
-		layer.prompt({title: '输入添加的课题', formType: 2}, function(text, index){
-		    message=text;
+	function addTitle(cid){
+		layer.prompt({title: '输入选题名称', formType: 3}, function(tname, index){
+		  layer.close(index);
+		  layer.prompt({title: '输入选题要求', formType: 2}, function(claim, index){
+		    layer.close(index);
+		    //layer.msg('演示完毕！您的口令：'+ pass +'<br>您最后写下了：'+text);
 		    $.ajax({
 	            url:"${pageContext.request.contextPath}/teacher/addCourseTopic",
 	            type:"post",
-	            data:{"tid":tid,"message":message},
+	            data:{"cid":cid,"tname":tname,"claim":claim},
 	            success:function(res){
-	            	layer.msg("留言成功");
-            		layer.close(index);
+	            	layer.msg("添加课题成功!");
 	            },
 	            error:function(res){
 	            	layer.msg("系统错误");
 	            }
 	        });
-	  	});
+		  });
+		});
 	}
 	
 </script>
