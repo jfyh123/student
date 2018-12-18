@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Topic implements Serializable{
 	private Integer  tid;//题目id
 	private Integer  cid;//课程id
+	private String cname;//课程名称
 	private String tname;//题目名称
 	private String claim;//要求
 	private Integer sum;//数量

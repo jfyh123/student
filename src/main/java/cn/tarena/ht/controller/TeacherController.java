@@ -16,7 +16,9 @@ import cn.tarena.ht.pojo.Topic;
 import cn.tarena.ht.pojo.UserTable;
 import cn.tarena.ht.result.CommentsResult;
 import cn.tarena.ht.result.ShowCourseResult;
+import cn.tarena.ht.result.StudentTopic;
 import cn.tarena.ht.service.CourseService;
+import cn.tarena.ht.service.ElectiveCourseService;
 import cn.tarena.ht.service.LeaveCommentsService;
 import cn.tarena.ht.service.TopicService;
 import cn.tarena.ht.service.UserService;
@@ -35,6 +37,8 @@ public class TeacherController {
 	private CourseService courseService;
 	@Autowired
 	private  LeaveCommentsService leaveCommentsService;
+	@Autowired
+	private ElectiveCourseService electiveCourseService;
 	
 	/**
 	 * 列出老师的课程
@@ -75,9 +79,23 @@ public class TeacherController {
 		ModelAndView mav=new ModelAndView();
 		List<Topic> list=topicService.showCourseTeacherTopic(cid);
 	    	mav.addObject("topiclist", list);
+	    	mav.setViewName("check_select_title");
+		return mav;
+	}
+	
+	/**
+	 * 查看已经提交选题的信息
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/showSelectTopic",produces = "application/json;charset=utf-8")
+	public ModelAndView showSelectTopic(HttpServletRequest request,HttpSession session) {
+		ModelAndView mav=new ModelAndView();
+		UserTable get=(UserTable) session.getAttribute("user");
+		//List<StudentTopic> list = electiveCourseService.showSelectTopic()
 	    	mav.setViewName("");
 		return mav;
 	}
+	
 	
 	
 	/**
