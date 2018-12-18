@@ -42,24 +42,28 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>课程</th>
-					<th>题目</th>
-					<th>老师</th>
+					<th>学号</th>
+					<th>姓名</th>
+					<th>课程名</th>
+					<th>题目名</th>
+					<th>要求</th>
 					<th>作品</th>
 					<th>评分</th>
-					<th>评语</th>
 				</tr>
 			</thead>
-			<c:forEach var="item" items="${courselist}" varStatus="status">
+			<c:forEach var="item" items="${scorelist}" varStatus="status">
 			<tbody>
 				<tr>
 					<td>${ status.index + 1}</td>
+					<td>${item.uname}</td>
+					<td>${item.nick_name}</td>
 					<td>${item.cname}</td>
 					<td>${item.tname}</td>
-					<td>${item.nick_name}</td>
+					<td>${item.claim}</td>
 					<td>${item.works}</td>
-					<td>${item.grade}</td>
-					<td>${item.message}</td>
+					<td>
+						<a class="btn btn-primary" onclick="updateScore();">批改成绩</a>
+					</td>
 				</tr>
 			</tbody>
 			</c:forEach>
@@ -71,29 +75,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		
 	});
 	
-	function saveSelect(){
-		obj = document.getElementsByName("select");
-	    var check_val = "";
-	    for(k in obj){
-	        if(obj[k].checked){
-	            check_val+=obj[k].value+",";
-	        }
-	    }
-	    $.ajax({
-            url:"${pageContext.request.contextPath}/student/selectCourse",
-            type:"post",
-            data:{"course":check_val},
-            success:function(res){
-            	if(res.code==200){
-            		layer.msg(res.data);
-            	}else{
-            		layer.msg(res.data);
-            	}
-            },
-            error:function(res){
-            	layer.msg(res.data);
-            }
-        });
+	function updateScore(){
+		
 	}
 </script>
 </html>
