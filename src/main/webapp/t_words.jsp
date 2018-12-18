@@ -60,8 +60,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<td>${status.index + 1}</td>
 					<td>${item.nick_name}</td>
 					<td>
-						<a class="btn btn-success" onclick="check_words()">查看留言</a>
-						<input id="message" name="message" type="hidden" value="${item.message}">
+						<a class="btn btn-success" onclick="check_words('${item.message}',${item.lcid});">查看留言</a>
 					</td>
 				</tr>
 			</tbody>
@@ -74,8 +73,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		
 	});
 	
-	function check_words(){
-		var message = $("#message").val();
+	function check_words(message,lcid){
 		layer.open({
    		  type: 1,
    		  shade: false,
@@ -83,7 +81,16 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
    		  area: ['360px','100px'],
    		  content: "<ul><li><span class='open_page'>"+message+"<span></li></ul>",
    		  cancel: function(){
-   		    
+   			$.ajax({
+	            url:"${pageContext.request.contextPath}/teacher/updateComment",
+	            type:"post",
+	            data:{"lcid":lcid},
+	            success:function(res){
+	            },
+	            error:function(res){
+	            	layer.msg("系统错误");
+	            }
+	        });
    		  }
    		});
 	}
