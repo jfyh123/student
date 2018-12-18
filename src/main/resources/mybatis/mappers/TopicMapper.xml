@@ -9,7 +9,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * from TOPIC where cid=#{cid} and sum >0
 	</select>
 	
+	<select id="showCourseTeacherTopic" parameterType="int"  resultType="cn.tarena.ht.pojo.Topic">
+		SELECT * from TOPIC where cid=#{cid} 
+	</select>
+	
 	<update id="updateTopicSum" parameterType="int">
 		update topic set sum=sum-1 where tid=#{tid}
 	</update>
+	
+	<insert id="addCourseTopic" parameterType="cn.tarena.ht.pojo.Topic">
+			INSERT INTO TOPIC (CID,TNAME,CLAIM) VALUES(#{topic.cid},#{topic.tname},#{topic.claim})
+	</insert>
 </mapper>

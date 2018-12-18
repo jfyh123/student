@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.tarena.ht.pojo.Course;
 import cn.tarena.ht.pojo.LeaveComments;
+import cn.tarena.ht.pojo.Topic;
 import cn.tarena.ht.pojo.UserTable;
 import cn.tarena.ht.result.CommentsResult;
 import cn.tarena.ht.result.ShowCourseResult;
@@ -50,22 +51,37 @@ public class TeacherController {
 	}
 	
 	/**
-	 * 列出学生已选课程
+	 * 添加课程选题
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/addCourseTopic",produces = "application/json;charset=utf-8")
-	public ModelAndView addCourseTopic(HttpServletRequest request,HttpSession session) {
-		UserTable get=(UserTable) session.getAttribute("user");
+	public @ResponseBody Result addCourseTopic(HttpServletRequest request,Topic topic) {
+		int i =topicService.addCourseTopic(topic);
+	    if(i==1){
+	    	 return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, 
+						ResultConstants.SUCCESS_MSG);
+	    }else{
+	    	 return ResultFactory.generateResult(ResultConstants.ERROR_CODE, 
+						ResultConstants.ERROR_MSG);
+	    }	   
+	}
+	
+	/**
+	 * 查看课程选题
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/showCourseTopic",produces = "application/json;charset=utf-8")
+	public ModelAndView showCourseTopic(HttpServletRequest request,Integer cid) {
 		ModelAndView mav=new ModelAndView();
-		 List<Course> list=courseService.showCourseTeacher(get.getUtid());
-	    	mav.addObject("courselist", list);
-	    	mav.setViewName("select_title");
+		List<Topic> list=topicService.showCourseTeacherTopic(cid);
+	    	mav.addObject("topiclist", list);
+	    	mav.setViewName("");
 		return mav;
 	}
 	
 	
 	/**
-	 * 列出老师的留言
+	 * 老师的留言
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/showComment",produces = "application/json;charset=utf-8")
@@ -79,13 +95,19 @@ public class TeacherController {
 	}
 	
 	/**
-	 * 列出老师的留言
+	 * 老师查阅
 	 * @author luojiayng
 	 * */
 	@RequestMapping(value = "/updateComment",produces = "application/json;charset=utf-8")
-	public void updateComment(HttpServletRequest request,HttpSession session,Integer lcid) {
-		UserTable get=(UserTable) session.getAttribute("user");
+	public  @ResponseBody Result updateComment(HttpServletRequest request,Integer lcid) {
 		int i=leaveCommentsService.updateComment(lcid);
+		 if(i==1){
+	    	 return ResultFactory.generateResult(ResultConstants.SUCCESS_CODE, 
+						ResultConstants.SUCCESS_MSG);
+	    }else{
+	    	 return ResultFactory.generateResult(ResultConstants.ERROR_CODE, 
+						ResultConstants.ERROR_MSG);
+	    }	
 	}
 	
 	

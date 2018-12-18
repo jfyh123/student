@@ -10,4 +10,8 @@ public interface TopicMapper {
 
 	int  updateTopicSum(Integer tid);
 
+	int addCourseTopic(Topic topic);
+
+	List<Topic> showCourseTeacherTopic(Integer cid);
+
 }

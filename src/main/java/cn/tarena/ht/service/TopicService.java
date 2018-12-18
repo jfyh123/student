@@ -23,6 +23,15 @@ public class TopicService {
 		return topicMapper.updateTopicSum(tid);
 	}
 
+	public int addCourseTopic(Topic topic) {
+		return topicMapper.addCourseTopic(topic);
+	}
+
+	public List<Topic> showCourseTeacherTopic(Integer cid) {
+		// TODO Auto-generated method stub
+		return topicMapper.showCourseTeacherTopic(cid);
+	}
+
 
 
 }
