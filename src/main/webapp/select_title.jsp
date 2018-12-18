@@ -12,7 +12,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/layer.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>上报题目</title>
+	<title>学社选题</title>
 	<style type="text/css">
 		body{
 			background-color: #F5F5F5;
@@ -42,29 +42,37 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>课程</th>
-					<th>周期</th>
+					<th>科目</th>
 					<th>时间</th>
-					<th>地址</th>
-					<th>选题操作</th>
+					<th>题目名称</th>
+					<th>作品</th>
+					<th>评分</th>
+					<th>评语</th>
+					<th>操作</th>
 				</tr>
 			</thead>
 			<c:forEach var="item" items="${courselist}" varStatus="status">
 			<tbody>
 				<tr>
-					<td>${status.index + 1}</td>
-					<td>${item.cname}</td>
-					<td>${item.cycle}</td>
-					<td>${item.time}</td>
-					<td>${item.address}</td>
 					<td>
-						<a class="btn btn-primary" onclick="chekcTitle(${item.cid});">查看</a>
-						<a style="margin-left: 20px;" class="btn btn-success" onclick="addTitle(${item.cid});">添加</a>
+						<input id="select" name="select" type="checkbox" value="${item.ecid}"/>
+					</td>
+					<td>${item.cname}</td>
+					<td>${item.time}</td>
+					<td>${item.tname}</td>
+					<td>${item.works}</td>
+					<td>${item.grade}</td>
+					<td>${item.message}</td>
+					<td>
+						<a class="btn btn-primary" onclick="checkTitle();" value="${item.cid}">选题</a>
 					</td>
 				</tr>
 			</tbody>
 			</c:forEach>
 		</table>
+	</div>
+	<div class="btn_bottom">
+		<a class="btn btn-primary" onclick="outSubject();">退课</a>
 	</div>
 </body>
 <script type="text/javascript">
@@ -72,39 +80,30 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		
 	});
 	
-	//查看
-	function chekcTitle(cid){
-		layer.open({
-		  type: 2,
-		  area: ['700px', '450px'],
-		  fixed: false, //不固定
-		  maxmin: true,
-		  title:"查看选题",
-		  content: "${pageContext.request.contextPath}/teacher/showCourseTopic?cid="+cid
-		});
+	function outSubject(){
+		obj = document.getElementsByName("select");
+	    var check_val = "";
+	    for(k in obj){
+	        if(obj[k].checked){
+	            check_val+=obj[k].value+",";
+	        }
+	    }
+	    $.ajax({
+            url:"${pageContext.request.contextPath}/student/deleteCourse",
+            type:"post",
+            data:{"course":check_val},
+            success:function(res){
+            	if(res.code==200){
+            		layer.msg(res.data);
+            		window.location.reload();
+            	}else{
+            		layer.msg(res.data);
+            	}
+            },
+            error:function(res){
+            	layer.msg(res.data);
+            }
+        });
 	}
-	
-	//添加选题
-	function addTitle(cid){
-		layer.prompt({title: '输入选题名称', formType: 3}, function(tname, index){
-		  layer.close(index);
-		  layer.prompt({title: '输入选题要求', formType: 2}, function(claim, index){
-		    layer.close(index);
-		    //layer.msg('演示完毕！您的口令：'+ pass +'<br>您最后写下了：'+text);
-		    $.ajax({
-	            url:"${pageContext.request.contextPath}/teacher/addCourseTopic",
-	            type:"post",
-	            data:{"cid":cid,"tname":tname,"claim":claim},
-	            success:function(res){
-	            	layer.msg("添加课题成功!");
-	            },
-	            error:function(res){
-	            	layer.msg("系统错误");
-	            }
-	        });
-		  });
-		});
-	}
-	
 </script>
 </html>
