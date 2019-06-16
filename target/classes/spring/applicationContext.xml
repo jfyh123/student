@@ -15,6 +15,13 @@
 <!-- 配置包扫描 -->	        
 <context:component-scan base-package="cn.tarena.ht.service"></context:component-scan>
 
+<!-- 配置Mysql的数据源 -->
+<bean id="dataSourceMysql" class="com.zaxxer.hikari.HikariDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost/student?characterEncoding=utf-8"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="123456"></property>
+	</bean>
 <!-- 配置Oracle的数据源 -->	
 <bean id="dataSourceOracle" class="com.zaxxer.hikari.HikariDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>

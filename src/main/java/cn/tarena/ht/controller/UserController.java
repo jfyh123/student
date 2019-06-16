@@ -1,5 +1,7 @@
 package cn.tarena.ht.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -115,6 +117,19 @@ public class UserController {
 					ResultConstants.SUCCESS_MSG,msg);
 		}	
 
+	}
+	/**
+	 * 测试连接mysql/oracle
+	 * @author luojiayng
+	 * */
+	@RequestMapping(value = "/test",produces = "application/json;charset=utf-8")
+	public @ResponseBody Result  test() {
+		List<UserTable> list=userService.selectAllUser();
+		for(UserTable e:list){
+			System.out.println(e.getUname());
+		}
+			return ResultFactory.generateResult(ResultConstants.ERROR_CODE, 
+					ResultConstants.ERROR_MSG,list);
 	}
 	
 	

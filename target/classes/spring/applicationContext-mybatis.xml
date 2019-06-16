@@ -15,7 +15,7 @@
 		
 <!--配置sqlSessionFactory -->
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	<property name="dataSource" ref="dataSourceOracle"></property>
+	<property name="dataSource" ref="dataSourceMysql"></property>
 	<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
 	<property name="mapperLocations" value="classpath:mybatis/mappers/*.xml"></property>
 	

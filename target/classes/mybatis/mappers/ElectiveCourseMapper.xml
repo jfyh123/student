@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 显示学生所有课程 -->
 	<select id="showCourse" parameterType="int" resultType="cn.tarena.ht.result.ShowCourseResult">
 		select 
-		EC.ECID,ec.cid
+		EC.ECID,ec.cid,
 		c.cname,c.cycle,c.ADDRESS,c."TIME",
 		ut.nick_name,
 		t.tname,
@@ -32,8 +32,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN COURSE c on c.CID=EC.CID
 		LEFT JOIN USERTABLE ut on ut.utid=c.tid
 		LEFT JOIN TOPIC t on t.tid=ec.tid
-		where EC.sid=#{utid}
+		where EC.sid=#{utid} and ec.tid is null
 	</select>
+
 	<!-- 成绩查询 -->
 	<select id="showCourseGrade" parameterType="int" resultType="cn.tarena.ht.result.ShowCourseResult">
 		select 
@@ -50,13 +51,54 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 检查是否已经选过这个课程 -->
-	<select id="CheckElectiveCourse" parameterType="int" resultType="cn.tarena.ht.pojo.ElectiveCourse">
-	select * from ELECTIVE_COURSE where cid=${cid} and sid=${utid}
+	<select id="CheckElectiveCourse" parameterType="int" resultType="cn.tarena.ht.result.CheckCourse">
+		select 
+		EC.ECID,
+        c.cid,
+		c.cname,c.cycle,c.ADDRESS,c."TIME",
+        ut.nick_name
+		from ELECTIVE_COURSE ec 
+		LEFT JOIN COURSE c on c.CID=EC.CID
+		LEFT JOIN USERTABLE ut on ut.utid=c.tid
+		where  ec.cid=${cid} and ec.sid=${utid}
 	</select>
 	
    <delete id="deleteCourse" parameterType="int">
    		delete from ELECTIVE_COURSE where ecid=#{ecid}
    </delete>
+   
+   <update id="selectCourseTopic">
+      update ELECTIVE_COURSE set tid=#{tid},works=#{works} where ecid=#{ecid} and sid=#{utid}
+   </update>
+   
+   
+   <select id="showCourseTeacher" parameterType="int" resultType="cn.tarena.ht.pojo.UserTable">
+		select 
+		distinct ut.utid,ut.nick_name 
+		from ELECTIVE_COURSE ec 
+		LEFT JOIN COURSE c on c.CID=EC.CID
+		LEFT JOIN USERTABLE ut on ut.utid=c.tid
+       where ec.sid=#{utid}
+	</select>
+	
+	
+	<select id="showSelectTopic" parameterType="int" resultType="cn.tarena.ht.result.StudentTopic">
+		select 
+		EC.ECID,
+		stu.uname,
+		stu.nick_name,
+		c.CNAME,
+		t.tname,t.claim,ec.works
+		from ELECTIVE_COURSE ec 
+		LEFT JOIN COURSE c on c.CID=EC.CID
+		LEFT JOIN USERTABLE stu on stu.utid=ec.sid
+		LEFT JOIN TOPIC t on t.tid=ec.tid
+		where c.TID=#{utid} and ec.works  is  not  null and ec.tid  is  not  null and EC.GRADE is NULL
+	</select>
+	
+	<update id="submitScore">
+		UPDATE ELECTIVE_COURSE set GRADE=#{grade},MESSAGE=#{message} where ECID=#{ecid}
+	</update>
 
 	
 	

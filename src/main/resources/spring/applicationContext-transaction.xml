@@ -16,7 +16,7 @@
 	
 	<!-- 事务管理 -->	
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSourceOracle"/>
+		<property name="dataSource" ref="dataSourceMysql"/>
 	</bean>
 	
 	<tx:advice id="txAdvice" transaction-manager="txManager">
